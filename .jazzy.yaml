@@ -1,0 +1,7 @@
+module: MaterialMotionPopMotionFamily
+module_version: 1.0.0
+umbrella_header: src/MaterialMotionPopMotionFamily.h
+objc: true
+sdk: iphonesimulator
+github_url: https://github.com/material-motion/material-motion-family-pop-swift
+github_file_prefix: https://github.com/material-motion/material-motion-family-pop-swift/tree/v1.0.0
