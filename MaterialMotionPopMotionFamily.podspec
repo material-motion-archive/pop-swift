@@ -10,4 +10,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = "src/*.{swift}", "src/private/*.{swift}"
+
+  s.dependency "pop", "~> 1.0"
+  s.dependency "MaterialMotionRuntime"
 end

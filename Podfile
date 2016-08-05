@@ -1,4 +1,7 @@
 abstract_target 'MaterialMotionPopMotionFamily' do
+  pod 'MaterialMotionRuntime' , :git => 'git@github.com:material-motion/material-motion-runtime-objc.git', :branch => 'develop'
+  pod 'pop'
+
   pod 'MaterialMotionPopMotionFamily', :path => './'
 
   workspace 'MaterialMotionPopMotionFamily.xcworkspace'
