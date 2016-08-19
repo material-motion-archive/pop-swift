@@ -37,7 +37,7 @@ extension POPAnimation: Plan {
   var willStart: DelegatedPerformanceTokenReturnBlock!
   var didEnd: DelegatedPerformanceTokenArgBlock!
 
-  required init(target: AnyObject?) {
+  required init(target: Any) {
     tokens = [POPAnimation: DelegatedPerformingToken]()
 
     if let view = target as? UIView {

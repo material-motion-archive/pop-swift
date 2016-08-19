@@ -7,7 +7,7 @@ PODS:
 
 DEPENDENCIES:
   - MaterialMotionPopMotionFamily (from `./`)
-  - MaterialMotionRuntime (from `git@github.com:material-motion/material-motion-runtime-objc.git`, branch `develop`)
+  - MaterialMotionRuntime (from `https://github.com/material-motion/material-motion-runtime-objc.git`, branch `develop`)
   - pop
 
 EXTERNAL SOURCES:
@@ -15,18 +15,18 @@ EXTERNAL SOURCES:
     :path: "./"
   MaterialMotionRuntime:
     :branch: develop
-    :git: git@github.com:material-motion/material-motion-runtime-objc.git
+    :git: https://github.com/material-motion/material-motion-runtime-objc.git
 
 CHECKOUT OPTIONS:
   MaterialMotionRuntime:
-    :commit: 2a43053b22493659cec64c2a49d5d52212ab484f
-    :git: git@github.com:material-motion/material-motion-runtime-objc.git
+    :commit: 6fd31d275d7fda65331ed170ae393de8f84f6e2f
+    :git: https://github.com/material-motion/material-motion-runtime-objc.git
 
 SPEC CHECKSUMS:
   MaterialMotionPopMotionFamily: 82392bb478ac6596839c752e86daa9fbe49c11b9
   MaterialMotionRuntime: 142f75ce2cf2682458aa9631541b8644b653ef34
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
 
-PODFILE CHECKSUM: b3884ceb44373d2ae1f55844ce8f4ce3e73672ac
+PODFILE CHECKSUM: 61e3f0a893f4eedee6f4b563898c196338daf144
 
 COCOAPODS: 1.0.1
