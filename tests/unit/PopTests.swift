@@ -34,7 +34,7 @@ import MaterialMotionPopMotionFamily
 
 class PopTests: XCTestCase {
 
-  func testAnimationDidPerformAndIdle() {
+  func testAnimationDidPerformAndIdleOnLayer() {
     let animation = POPBasicAnimation(propertyNamed: kPOPLayerOpacity)
     animation!.fromValue = NSNumber(value: 1)
     animation!.toValue = NSNumber(value: 0)
@@ -56,5 +56,4 @@ class PopTests: XCTestCase {
     waitForExpectations(timeout: 0.3)
     XCTAssertEqual(scheduler.activityState, .idle)
   }
-
 }

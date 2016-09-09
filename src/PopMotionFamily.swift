@@ -32,19 +32,14 @@ extension POPAnimation: Plan {
  Lightweight bridge between POP and Material Motion. Describes how to perform a POPAnimation.
  */
 @objc class POPAnimationPerformer: NSObject, PlanPerforming, DelegatedPerforming, POPAnimationDelegate {
-  let target: CALayer
+  let target: NSObject
   var tokens: [POPAnimation: DelegatedPerformingToken]
   var willStart: DelegatedPerformanceTokenReturnBlock!
   var didEnd: DelegatedPerformanceTokenArgBlock!
 
   required init(target: Any) {
     tokens = [POPAnimation: DelegatedPerformingToken]()
-
-    if let view = target as? UIView {
-      self.target = view.layer
-    } else {
-      self.target = target as! CALayer
-    }
+    self.target = target as! NSObject
   }
 
   func add(plan: Plan) {
