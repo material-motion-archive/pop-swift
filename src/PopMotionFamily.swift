@@ -62,7 +62,7 @@ extension POPAnimation: Plan {
   }
 
   func pop_animationDidStop(_ anim: POPAnimation!, finished: Bool) {
-    guard let token = tokens[anim] else { return }
+    let token = tokens[anim]!
 
     self.didEnd(token)
     tokens.removeValue(forKey: anim)
