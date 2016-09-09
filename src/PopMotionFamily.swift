@@ -56,7 +56,7 @@ extension POPAnimation: Plan {
     self.target.pop_add(animation, forKey: nil)
   }
 
-  func setDelegatedPerformance(willStart: DelegatedPerformanceTokenReturnBlock, didEnd: DelegatedPerformanceTokenArgBlock) {
+  func setDelegatedPerformance(willStart: @escaping DelegatedPerformanceTokenReturnBlock, didEnd: @escaping DelegatedPerformanceTokenArgBlock) {
     self.willStart = willStart
     self.didEnd = didEnd
   }
