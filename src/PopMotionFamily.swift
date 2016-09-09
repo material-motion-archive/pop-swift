@@ -48,7 +48,7 @@ extension POPAnimation: Plan {
   }
 
   func add(plan: Plan) {
-    guard let animation = plan as? POPAnimation else { return }
+    let animation = plan as! POPAnimation
     guard let token = self.willStart() else { return }
 
     tokens[animation] = token
