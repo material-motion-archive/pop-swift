@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     let window = UIWindow(frame: UIScreen.main.bounds)
     self.window = window
-    window.rootViewController = UINavigationController(rootViewController: TapToToggleExampleViewController())
+    window.rootViewController = UINavigationController(rootViewController: TapToToggleExample1ViewController())
     window.makeKeyAndVisible()
     return true
   }

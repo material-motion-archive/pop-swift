@@ -19,16 +19,16 @@ import MaterialMotionRuntime
 import MaterialMotionPopMotionFamily
 import pop
 
-let minSize: CGFloat = 100.0
-let maxSize: CGFloat = 280.0
-
-let springSpeed: CGFloat = 15.0
-let springBounciness: CGFloat = 18.0
-
 /**
  A demonstration of how to commit a POP animation to a layer using a Material Motion scheduler.
  */
-class TapToToggleExampleViewController: UIViewController, SchedulerDelegate {
+class TapToToggleExample1ViewController: UIViewController, SchedulerDelegate {
+
+  let minSize: CGFloat = 100.0
+  let maxSize: CGFloat = 280.0
+
+  let springSpeed: CGFloat = 15.0
+  let springBounciness: CGFloat = 18.0
 
   // We create a single Scheduler for the lifetime of this view controller. How many schedulers you
   // decide to create is a matter of preference, but generally speaking it's fair to create one
