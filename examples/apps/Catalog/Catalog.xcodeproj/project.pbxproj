@@ -10,7 +10,7 @@
 		666FAA841D384A6B000363DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666FAA831D384A6B000363DA /* AppDelegate.swift */; };
 		666FAA8B1D384A6B000363DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 666FAA8A1D384A6B000363DA /* Assets.xcassets */; };
 		666FAA8E1D384A6B000363DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 666FAA8C1D384A6B000363DA /* LaunchScreen.storyboard */; };
-		668484311D8232F10032CEED /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668484301D8232F10032CEED /* ExampleViewController.swift */; };
+		668484311D8232F10032CEED /* TapToToggleExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668484301D8232F10032CEED /* TapToToggleExample.swift */; };
 		B04F78D7B445518916075795 /* Pods_MaterialMotionPopMotionFamily_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1102FDE2A700782FB3BA08B /* Pods_MaterialMotionPopMotionFamily_UnitTests.framework */; };
 		B630F97386459BA08F5B70B9 /* Pods_MaterialMotionPopMotionFamily_Catalog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86F53EAE6C36C6C0E62B6777 /* Pods_MaterialMotionPopMotionFamily_Catalog.framework */; };
 		D03A08901D591DFF003C85FE /* PopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A088F1D591DFF003C85FE /* PopTests.swift */; };
@@ -36,7 +36,7 @@
 		666FAA941D384A6B000363DA /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		666FAA9A1D384A6B000363DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../UnitTests/Info.plist; sourceTree = "<group>"; };
 		666FAAA71D384D51000363DA /* UnitTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UnitTests-Bridging-Header.h"; path = "../UnitTests/UnitTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		668484301D8232F10032CEED /* ExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
+		668484301D8232F10032CEED /* TapToToggleExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapToToggleExample.swift; sourceTree = "<group>"; };
 		677FB1942C52573291A445F0 /* Pods-MaterialMotionPopMotionFamily-Catalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialMotionPopMotionFamily-Catalog.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-MaterialMotionPopMotionFamily-Catalog/Pods-MaterialMotionPopMotionFamily-Catalog.release.xcconfig"; sourceTree = "<group>"; };
 		86F53EAE6C36C6C0E62B6777 /* Pods_MaterialMotionPopMotionFamily_Catalog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaterialMotionPopMotionFamily_Catalog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38937ED6C4262DAEA5AE69A /* Pods-MaterialMotionPopMotionFamily-UnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialMotionPopMotionFamily-UnitTests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-MaterialMotionPopMotionFamily-UnitTests/Pods-MaterialMotionPopMotionFamily-UnitTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 		666FAAA31D384B13000363DA /* examples */ = {
 			isa = PBXGroup;
 			children = (
-				668484301D8232F10032CEED /* ExampleViewController.swift */,
+				668484301D8232F10032CEED /* TapToToggleExample.swift */,
 			);
 			name = examples;
 			path = ../..;
@@ -364,7 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				666FAA841D384A6B000363DA /* AppDelegate.swift in Sources */,
-				668484311D8232F10032CEED /* ExampleViewController.swift in Sources */,
+				668484311D8232F10032CEED /* TapToToggleExample.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
