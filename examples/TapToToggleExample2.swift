@@ -170,3 +170,9 @@ extension TapToToggleExample2ViewController {
     view.addGestureRecognizer(tap)
   }
 }
+
+extension TapToToggleExample2ViewController {
+  class func catalogBreadcrumbs() -> [String] {
+    return ["Tap to Toggle 2"]
+  }
+}

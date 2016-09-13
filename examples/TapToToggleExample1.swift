@@ -131,4 +131,8 @@ class TapToToggleExample1ViewController: UIViewController, SchedulerDelegate {
 
     self.commonInit()
   }
+
+  class func catalogBreadcrumbs() -> [String] {
+    return ["Tap to Toggle 1"]
+  }
 }

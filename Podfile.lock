@@ -1,4 +1,5 @@
 PODS:
+  - CatalogByConvention (1.0.1)
   - MaterialMotionPopMotionFamily (1.0.0):
     - MaterialMotionRuntime
     - pop (~> 1.0)
@@ -6,6 +7,7 @@ PODS:
   - pop (1.0.9)
 
 DEPENDENCIES:
+  - CatalogByConvention
   - MaterialMotionPopMotionFamily (from `./`)
   - MaterialMotionRuntime (from `https://github.com/material-motion/material-motion-runtime-objc.git`, branch `develop`)
   - pop
@@ -23,10 +25,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/material-motion/material-motion-runtime-objc.git
 
 SPEC CHECKSUMS:
+  CatalogByConvention: 0e471a53b232b83be30141379b3ff0ad3365c3ec
   MaterialMotionPopMotionFamily: 82392bb478ac6596839c752e86daa9fbe49c11b9
   MaterialMotionRuntime: 142f75ce2cf2682458aa9631541b8644b653ef34
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
 
-PODFILE CHECKSUM: 61e3f0a893f4eedee6f4b563898c196338daf144
+PODFILE CHECKSUM: 91d627b49fabf2162b1ef706bcac19d95c2e6bc5
 
 COCOAPODS: 1.0.1
