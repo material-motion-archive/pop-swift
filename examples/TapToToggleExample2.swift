@@ -31,9 +31,7 @@ import pop
 // our code-base.
 
 private class SpringDiameter: NSObject, Plan {
-
   var diameter: CGFloat
-
   init(to diameter: CGFloat) {
     self.diameter = diameter
   }
@@ -44,6 +42,10 @@ private class SpringDiameter: NSObject, Plan {
   // Map this plan to our desired performer. This is a required method of the Plan protocol.
   func performerClass() -> AnyClass {
     return SpringDiameterPerformer.self
+  }
+
+  public func copy(with zone: NSZone? = nil) -> Any {
+    return SpringDiameter(to: diameter)
   }
 }
 
