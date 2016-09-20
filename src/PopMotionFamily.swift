@@ -44,9 +44,6 @@ extension POPAnimation: Plan {
 
   func add(plan: Plan) {
     let animation = plan as! POPAnimation
-    guard let token = self.willStart() else { return }
-
-    tokens[animation] = token
     animation.delegate = self
     self.target.pop_add(animation, forKey: nil)
   }
@@ -54,6 +51,13 @@ extension POPAnimation: Plan {
   func setDelegatedPerformance(willStart: @escaping DelegatedPerformanceTokenReturnBlock, didEnd: @escaping DelegatedPerformanceTokenArgBlock) {
     self.willStart = willStart
     self.didEnd = didEnd
+  }
+}
+
+extension POPAnimationPerformer {
+  func pop_animationDidStart(_ anim: POPAnimation!) {
+    guard let token = self.willStart() else { return }
+    tokens[anim] = token
   }
 
   func pop_animationDidStop(_ anim: POPAnimation!, finished: Bool) {
