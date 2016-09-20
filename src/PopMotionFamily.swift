@@ -31,24 +31,24 @@ extension POPAnimation: Plan {
 /**
  Lightweight bridge between POP and Material Motion. Describes how to perform a POPAnimation.
  */
-@objc class POPAnimationPerformer: NSObject, PlanPerforming, DelegatedPerforming, POPAnimationDelegate {
+class POPAnimationPerformer: NSObject, PlanPerforming, DelegatedPerforming, POPAnimationDelegate {
   let target: NSObject
-  var tokens: [POPAnimation: DelegatedPerformingToken]
-  var willStart: DelegatedPerformanceTokenReturnBlock!
-  var didEnd: DelegatedPerformanceTokenArgBlock!
-
   required init(target: Any) {
-    tokens = [POPAnimation: DelegatedPerformingToken]()
     self.target = target as! NSObject
+    super.init()
   }
 
+  var tokens: [POPAnimation: DelegatedPerformingToken] = [:]
   func add(plan: Plan) {
     let animation = plan as! POPAnimation
     animation.delegate = self
     self.target.pop_add(animation, forKey: nil)
   }
 
-  func setDelegatedPerformance(willStart: @escaping DelegatedPerformanceTokenReturnBlock, didEnd: @escaping DelegatedPerformanceTokenArgBlock) {
+  var willStart: DelegatedPerformanceTokenReturnBlock!
+  var didEnd: DelegatedPerformanceTokenArgBlock!
+  func setDelegatedPerformance(willStart: @escaping DelegatedPerformanceTokenReturnBlock,
+                               didEnd: @escaping DelegatedPerformanceTokenArgBlock) {
     self.willStart = willStart
     self.didEnd = didEnd
   }
