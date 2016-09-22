@@ -1,5 +1,5 @@
 abstract_target 'MaterialMotionPopMotionFamily' do
-  pod 'MaterialMotionRuntime' , :git => 'https://github.com/material-motion/material-motion-runtime-objc.git', :branch => 'develop'
+  pod 'MaterialMotionRuntime'
   pod 'pop'
   pod 'CatalogByConvention'
 
