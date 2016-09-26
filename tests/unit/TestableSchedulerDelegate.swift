@@ -16,10 +16,8 @@
 
 import XCTest
 import MaterialMotionRuntime
-import pop
-import MaterialMotionPopMotionFamily
 
-@objc class TestableSchedulerDelegate: NSObject, SchedulerDelegate {
+class TestableSchedulerDelegate: NSObject, SchedulerDelegate {
   var activityStateDidChange = false
   var didIdleExpectation: XCTestExpectation?
 
@@ -29,31 +27,5 @@ import MaterialMotionPopMotionFamily
     if scheduler.activityState == .idle {
       didIdleExpectation?.fulfill()
     }
-  }
-}
-
-class PopTests: XCTestCase {
-
-  func testAnimationDidPerformAndIdleOnLayer() {
-    let animation = POPBasicAnimation(propertyNamed: kPOPLayerOpacity)
-    animation!.fromValue = NSNumber(value: 1)
-    animation!.toValue = NSNumber(value: 0)
-    animation!.duration = 0.01
-
-    let layer = CALayer()
-
-    let transaction = Transaction()
-    transaction.add(plan: animation!, to: layer)
-
-    let scheduler = Scheduler()
-    let delegate = TestableSchedulerDelegate()
-
-    delegate.didIdleExpectation = expectation(description: "Did idle")
-    scheduler.delegate = delegate
-
-    scheduler.commit(transaction: transaction)
-
-    waitForExpectations(timeout: 0.3)
-    XCTAssertEqual(scheduler.activityState, .idle)
   }
 }

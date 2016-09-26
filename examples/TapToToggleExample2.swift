@@ -17,7 +17,6 @@
 import UIKit
 import MaterialMotionRuntime
 import MaterialMotionPopMotionFamily
-import pop
 
 // A demonstration of how to define composite plans.
 //
@@ -119,21 +118,16 @@ private class SpringDiameterPerformer: NSObject, PlanPerforming, ComposablePerfo
     let diameterChange = plan as! SpringDiameter
 
     let transaction = Transaction()
-
-    let bounds = POPSpringAnimation(propertyNamed: kPOPLayerBounds)!
-    bounds.toValue = NSValue(cgRect: CGRect(x: 0, y: 0,
-                                            width: diameterChange.diameter,
-                                            height: diameterChange.diameter))
-    bounds.springSpeed = diameterChange.springSpeed
-    bounds.springBounciness = diameterChange.springBounciness
-    transaction.add(plan: bounds, to: target)
-
-    let borderRadius = POPSpringAnimation(propertyNamed: kPOPLayerCornerRadius)!
-    borderRadius.toValue = NSNumber(value: Float(diameterChange.diameter / 2))
-    borderRadius.springSpeed = diameterChange.springSpeed
-    borderRadius.springBounciness = diameterChange.springBounciness
-    transaction.add(plan: borderRadius, to: target)
-
+    func add(plans: [Plan], to target: Any) {
+      for plan in plans {
+        transaction.add(plan: plan, to: target)
+      }
+    }
+    add(plans: [SpringTo(.layerBounds, destination: CGRect(x: 0, y: 0,
+                                                           width: diameterChange.diameter,
+                                                           height: diameterChange.diameter)),
+                SpringTo(.layerCornerRadius, destination: diameterChange.diameter / 2)],
+        to: target)
     emitter.emit(transaction: transaction)
   }
 

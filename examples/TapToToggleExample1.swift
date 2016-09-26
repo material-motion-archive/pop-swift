@@ -17,7 +17,6 @@
 import UIKit
 import MaterialMotionRuntime
 import MaterialMotionPopMotionFamily
-import pop
 
 /**
  A demonstration of how to commit a POP animation to a layer using a Material Motion scheduler.
@@ -53,15 +52,9 @@ class TapToToggleExample1ViewController: UIViewController, SchedulerDelegate {
     let posPercent = CGFloat(toggleState ? 1 : 0)
     let newSize = posPercent * (maxSize - minSize) + minSize
 
-    let bounds = POPSpringAnimation(propertyNamed: kPOPLayerBounds)
-    bounds!.toValue = NSValue(cgRect: CGRect(x: 0, y: 0, width: newSize, height: newSize))
-    bounds!.springSpeed = springSpeed
-    bounds!.springBounciness = springBounciness
-
-    let borderRadius = POPSpringAnimation(propertyNamed: kPOPLayerCornerRadius)
-    borderRadius!.toValue = NSNumber(value: Float(newSize / 2))
-    borderRadius!.springSpeed = springSpeed
-    borderRadius!.springBounciness = springBounciness
+    let springBounds = SpringTo(.layerBounds, destination: CGRect(x: 0, y: 0,
+                                                                  width: newSize, height: newSize))
+    let springBorderRadius = SpringTo(.layerCornerRadius, destination: newSize / 2)
 
     // vv Material Motion-specific code vv
 
@@ -71,8 +64,8 @@ class TapToToggleExample1ViewController: UIViewController, SchedulerDelegate {
     // also associate POP animations with UIView instances.
 
     let transaction = Transaction()
-    transaction.add(plan: bounds!, to: circle)
-    transaction.add(plan: borderRadius!, to: circle)
+    transaction.add(plan: springBounds, to: circle)
+    transaction.add(plan: springBorderRadius, to: circle)
 
     // On commit, the runtime will create an entity capable of adding POP animations to layers.
     scheduler.commit(transaction: transaction)
