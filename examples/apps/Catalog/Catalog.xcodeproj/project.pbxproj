@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B0D01AB7FE74F8FB588A235 /* Pods_MaterialMotionPopFamily_Catalog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C1E6C88D41382AF074BF655 /* Pods_MaterialMotionPopFamily_Catalog.framework */; };
+		65AFC614CBA7BB5416C0729A /* Pods_MaterialMotionPopFamily_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C7A6883133F595BDDB5293 /* Pods_MaterialMotionPopFamily_UnitTests.framework */; };
 		666FAA841D384A6B000363DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666FAA831D384A6B000363DA /* AppDelegate.swift */; };
 		666FAA8B1D384A6B000363DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 666FAA8A1D384A6B000363DA /* Assets.xcassets */; };
 		666FAA8E1D384A6B000363DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 666FAA8C1D384A6B000363DA /* LaunchScreen.storyboard */; };
@@ -14,8 +16,6 @@
 		668484351D8241EC0032CEED /* TapToToggleExample2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668484331D8241EC0032CEED /* TapToToggleExample2.swift */; };
 		66A2777A1D99843500AFA57B /* SpringPropertyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A277791D99843500AFA57B /* SpringPropertyTests.swift */; };
 		66F937341D90747E0085432F /* TestableSchedulerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F937331D90747E0085432F /* TestableSchedulerDelegate.swift */; };
-		B04F78D7B445518916075795 /* Pods_MaterialMotionPopMotionFamily_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1102FDE2A700782FB3BA08B /* Pods_MaterialMotionPopMotionFamily_UnitTests.framework */; };
-		B630F97386459BA08F5B70B9 /* Pods_MaterialMotionPopMotionFamily_Catalog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86F53EAE6C36C6C0E62B6777 /* Pods_MaterialMotionPopMotionFamily_Catalog.framework */; };
 		D03A08901D591DFF003C85FE /* SpringToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A088F1D591DFF003C85FE /* SpringToTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		054C5EA6E37A5493D5A18C42 /* Pods-MaterialMotionPopMotionFamily-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialMotionPopMotionFamily-UnitTests.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-MaterialMotionPopMotionFamily-UnitTests/Pods-MaterialMotionPopMotionFamily-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0B8B287E941CF290DFFD6C1F /* Pods-MaterialMotionPopFamily-Catalog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialMotionPopFamily-Catalog.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-MaterialMotionPopFamily-Catalog/Pods-MaterialMotionPopFamily-Catalog.debug.xcconfig"; sourceTree = "<group>"; };
+		5730DA13B51955255F3B7EC0 /* Pods-MaterialMotionPopFamily-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialMotionPopFamily-UnitTests.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-MaterialMotionPopFamily-UnitTests/Pods-MaterialMotionPopFamily-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		666FAA801D384A6B000363DA /* Catalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		666FAA831D384A6B000363DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Catalog/AppDelegate.swift; sourceTree = "<group>"; };
 		666FAA8A1D384A6B000363DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -45,9 +47,13 @@
 		66F937331D90747E0085432F /* TestableSchedulerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableSchedulerDelegate.swift; sourceTree = "<group>"; };
 		677FB1942C52573291A445F0 /* Pods-MaterialMotionPopMotionFamily-Catalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialMotionPopMotionFamily-Catalog.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-MaterialMotionPopMotionFamily-Catalog/Pods-MaterialMotionPopMotionFamily-Catalog.release.xcconfig"; sourceTree = "<group>"; };
 		86F53EAE6C36C6C0E62B6777 /* Pods_MaterialMotionPopMotionFamily_Catalog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaterialMotionPopMotionFamily_Catalog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C1E6C88D41382AF074BF655 /* Pods_MaterialMotionPopFamily_Catalog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaterialMotionPopFamily_Catalog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8C7A6883133F595BDDB5293 /* Pods_MaterialMotionPopFamily_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaterialMotionPopFamily_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38937ED6C4262DAEA5AE69A /* Pods-MaterialMotionPopMotionFamily-UnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialMotionPopMotionFamily-UnitTests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-MaterialMotionPopMotionFamily-UnitTests/Pods-MaterialMotionPopMotionFamily-UnitTests.release.xcconfig"; sourceTree = "<group>"; };
+		BAF1A26FDB126CF5EF9841CF /* Pods-MaterialMotionPopFamily-UnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialMotionPopFamily-UnitTests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-MaterialMotionPopFamily-UnitTests/Pods-MaterialMotionPopFamily-UnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		C1102FDE2A700782FB3BA08B /* Pods_MaterialMotionPopMotionFamily_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaterialMotionPopMotionFamily_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D03A088F1D591DFF003C85FE /* SpringToTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringToTests.swift; sourceTree = "<group>"; };
+		DFA0052F3FE0A1740AF88F4D /* Pods-MaterialMotionPopFamily-Catalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialMotionPopFamily-Catalog.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-MaterialMotionPopFamily-Catalog/Pods-MaterialMotionPopFamily-Catalog.release.xcconfig"; sourceTree = "<group>"; };
 		EBC42C9D345C1B3917FD6E3E /* Pods-MaterialMotionPopMotionFamily-Catalog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialMotionPopMotionFamily-Catalog.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-MaterialMotionPopMotionFamily-Catalog/Pods-MaterialMotionPopMotionFamily-Catalog.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B04F78D7B445518916075795 /* Pods_MaterialMotionPopMotionFamily_UnitTests.framework in Frameworks */,
+				65AFC614CBA7BB5416C0729A /* Pods_MaterialMotionPopFamily_UnitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B630F97386459BA08F5B70B9 /* Pods_MaterialMotionPopMotionFamily_Catalog.framework in Frameworks */,
+				5B0D01AB7FE74F8FB588A235 /* Pods_MaterialMotionPopFamily_Catalog.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +84,10 @@
 				677FB1942C52573291A445F0 /* Pods-MaterialMotionPopMotionFamily-Catalog.release.xcconfig */,
 				054C5EA6E37A5493D5A18C42 /* Pods-MaterialMotionPopMotionFamily-UnitTests.debug.xcconfig */,
 				B38937ED6C4262DAEA5AE69A /* Pods-MaterialMotionPopMotionFamily-UnitTests.release.xcconfig */,
+				0B8B287E941CF290DFFD6C1F /* Pods-MaterialMotionPopFamily-Catalog.debug.xcconfig */,
+				DFA0052F3FE0A1740AF88F4D /* Pods-MaterialMotionPopFamily-Catalog.release.xcconfig */,
+				5730DA13B51955255F3B7EC0 /* Pods-MaterialMotionPopFamily-UnitTests.debug.xcconfig */,
+				BAF1A26FDB126CF5EF9841CF /* Pods-MaterialMotionPopFamily-UnitTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -183,6 +193,8 @@
 			children = (
 				86F53EAE6C36C6C0E62B6777 /* Pods_MaterialMotionPopMotionFamily_Catalog.framework */,
 				C1102FDE2A700782FB3BA08B /* Pods_MaterialMotionPopMotionFamily_UnitTests.framework */,
+				8C1E6C88D41382AF074BF655 /* Pods_MaterialMotionPopFamily_Catalog.framework */,
+				A8C7A6883133F595BDDB5293 /* Pods_MaterialMotionPopFamily_UnitTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -194,12 +206,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 666FAA9D1D384A6B000363DA /* Build configuration list for PBXNativeTarget "Catalog" */;
 			buildPhases = (
-				9DE85BA4116304FF09E5FB5B /* [CP] Check Pods Manifest.lock */,
+				AE14A10A0E6B6EEB83A6DC44 /* [CP] Check Pods Manifest.lock */,
 				666FAA7C1D384A6B000363DA /* Sources */,
 				666FAA7E1D384A6B000363DA /* Resources */,
 				AD6B719C7B9133D92F429C10 /* Frameworks */,
-				9311E1061D79C1EBB3C8D8A8 /* [CP] Embed Pods Frameworks */,
-				7E11F8A55DBC14CB90AD7FEC /* [CP] Copy Pods Resources */,
+				1579C040FB0486B14E5A54A9 /* [CP] Embed Pods Frameworks */,
+				8CA6F6F317D4359736E7D9CD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,12 +226,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 666FAAA01D384A6B000363DA /* Build configuration list for PBXNativeTarget "UnitTests" */;
 			buildPhases = (
-				BDD2DDFCCD99CBF0C27E76EE /* [CP] Check Pods Manifest.lock */,
+				098609FFB501118224657B21 /* [CP] Check Pods Manifest.lock */,
 				666FAA901D384A6B000363DA /* Sources */,
 				666FAA921D384A6B000363DA /* Resources */,
 				484FBCD5D072167BC705DAE2 /* Frameworks */,
-				9C3A661E1C6CF4148159D103 /* [CP] Embed Pods Frameworks */,
-				AB2FDDAA8224C090EA8DEC5F /* [CP] Copy Pods Resources */,
+				B6DB46639E389B93F4DE411A /* [CP] Embed Pods Frameworks */,
+				6D6365779B4819081C2B829F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -291,52 +303,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7E11F8A55DBC14CB90AD7FEC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../../../Pods/Target Support Files/Pods-MaterialMotionPopMotionFamily-Catalog/Pods-MaterialMotionPopMotionFamily-Catalog-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9311E1061D79C1EBB3C8D8A8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../../../Pods/Target Support Files/Pods-MaterialMotionPopMotionFamily-Catalog/Pods-MaterialMotionPopMotionFamily-Catalog-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9C3A661E1C6CF4148159D103 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../../../Pods/Target Support Files/Pods-MaterialMotionPopMotionFamily-UnitTests/Pods-MaterialMotionPopMotionFamily-UnitTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9DE85BA4116304FF09E5FB5B /* [CP] Check Pods Manifest.lock */ = {
+		098609FFB501118224657B21 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -351,7 +318,22 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		AB2FDDAA8224C090EA8DEC5F /* [CP] Copy Pods Resources */ = {
+		1579C040FB0486B14E5A54A9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../../Pods/Target Support Files/Pods-MaterialMotionPopFamily-Catalog/Pods-MaterialMotionPopFamily-Catalog-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6D6365779B4819081C2B829F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -363,10 +345,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../../../Pods/Target Support Files/Pods-MaterialMotionPopMotionFamily-UnitTests/Pods-MaterialMotionPopMotionFamily-UnitTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../../../Pods/Target Support Files/Pods-MaterialMotionPopFamily-UnitTests/Pods-MaterialMotionPopFamily-UnitTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BDD2DDFCCD99CBF0C27E76EE /* [CP] Check Pods Manifest.lock */ = {
+		8CA6F6F317D4359736E7D9CD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../../Pods/Target Support Files/Pods-MaterialMotionPopFamily-Catalog/Pods-MaterialMotionPopFamily-Catalog-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE14A10A0E6B6EEB83A6DC44 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -379,6 +376,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B6DB46639E389B93F4DE411A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../../Pods/Target Support Files/Pods-MaterialMotionPopFamily-UnitTests/Pods-MaterialMotionPopFamily-UnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -517,7 +529,7 @@
 		};
 		666FAA9E1D384A6B000363DA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EBC42C9D345C1B3917FD6E3E /* Pods-MaterialMotionPopMotionFamily-Catalog.debug.xcconfig */;
+			baseConfigurationReference = 0B8B287E941CF290DFFD6C1F /* Pods-MaterialMotionPopFamily-Catalog.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Catalog/Info.plist;
@@ -530,7 +542,7 @@
 		};
 		666FAA9F1D384A6B000363DA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 677FB1942C52573291A445F0 /* Pods-MaterialMotionPopMotionFamily-Catalog.release.xcconfig */;
+			baseConfigurationReference = DFA0052F3FE0A1740AF88F4D /* Pods-MaterialMotionPopFamily-Catalog.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Catalog/Info.plist;
@@ -544,7 +556,7 @@
 		};
 		666FAAA11D384A6B000363DA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 054C5EA6E37A5493D5A18C42 /* Pods-MaterialMotionPopMotionFamily-UnitTests.debug.xcconfig */;
+			baseConfigurationReference = 5730DA13B51955255F3B7EC0 /* Pods-MaterialMotionPopFamily-UnitTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -561,7 +573,7 @@
 		};
 		666FAAA21D384A6B000363DA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B38937ED6C4262DAEA5AE69A /* Pods-MaterialMotionPopMotionFamily-UnitTests.release.xcconfig */;
+			baseConfigurationReference = BAF1A26FDB126CF5EF9841CF /* Pods-MaterialMotionPopFamily-UnitTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;

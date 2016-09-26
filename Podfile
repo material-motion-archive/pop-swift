@@ -1,11 +1,11 @@
-abstract_target 'MaterialMotionPopMotionFamily' do
+abstract_target 'MaterialMotionPopFamily' do
   pod 'MaterialMotionRuntime'
   pod 'pop'
   pod 'CatalogByConvention'
 
-  pod 'MaterialMotionPopMotionFamily', :path => './'
+  pod 'MaterialMotionPopFamily', :path => './'
 
-  workspace 'MaterialMotionPopMotionFamily.xcworkspace'
+  workspace 'MaterialMotionPopFamily.xcworkspace'
   use_frameworks!
 
   target "Catalog" do

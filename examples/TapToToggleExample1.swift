@@ -16,7 +16,7 @@
 
 import UIKit
 import MaterialMotionRuntime
-import MaterialMotionPopMotionFamily
+import MaterialMotionPopFamily
 
 /**
  A demonstration of how to commit a POP animation to a layer using a Material Motion scheduler.

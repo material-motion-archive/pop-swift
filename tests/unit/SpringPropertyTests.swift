@@ -16,7 +16,7 @@
 
 import XCTest
 import MaterialMotionRuntime
-import MaterialMotionPopMotionFamily
+import MaterialMotionPopFamily
 
 import XCTest
 
