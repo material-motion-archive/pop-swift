@@ -1,34 +1,57 @@
-# POP Material Motion Family in Swift
+# Material Motion Family Pop Swift
 
 [![Build Status](https://travis-ci.org/material-motion/material-motion-family-pop-swift.svg?branch=develop)](https://travis-ci.org/material-motion/material-motion-family-pop-swift)
 [![codecov](https://codecov.io/gh/material-motion/material-motion-family-pop-swift/branch/develop/graph/badge.svg)](https://codecov.io/gh/material-motion/material-motion-family-pop-swift)
 
 The POP material motion family provides a bridge between
 [Facebook's POP library](https://github.com/facebook/pop) and the
-[Material Motion runtime](https://github.com/material-motion/material-motion-runtime-objc). Adding
-this library to your project allows you to commit `POPAnimation` objects to Material Motion
-Schedulers.
+[Material Motion runtime](https://github.com/material-motion/material-motion-runtime-objc).
 
 ## Installation
 
 ### Installation with CocoaPods
 
-Add `MaterialMotionPopMotionFamily` to your `Podfile`:
+> CocoaPods is a dependency manager for Objective-C and Swift libraries. CocoaPods automates the
+> process of using third-party libraries in your projects. See
+> [the Getting Started guide](https://guides.cocoapods.org/using/getting-started.html) for more
+> information. You can install it with the following command:
+>
+>     gem install cocoapods
 
-    pod 'MaterialMotionPopMotionFamily'
+Add `MaterialMotionPopFamily` to your `Podfile`:
+
+    pod 'MaterialMotionPopFamily'
 
 Then run the following command:
 
     pod install
 
+### Usage
+
+Import the framework:
+
+    @import MaterialMotionPopFamily;
+
+You will now have access to all of the APIs.
+
 ## Example apps/unit tests
 
-To check out a local copy of the repo and run our example apps you can run the following commands:
+Check out a local copy of the repo to access the Catalog application by running the following
+commands:
 
     git clone https://github.com/material-motion/material-motion-family-pop-swift.git
     cd material-motion-family-pop-swift
     pod install
-    open MaterialMotionPopMotionFamily.xcworkspace
+    open MaterialMotionPopFamily.xcworkspace
+
+## Guides
+
+1. [Architecture](#architecture)
+2. [How to ...](#how-to-...)
+
+### Architecture
+
+### How to ...
 
 ## Contributing
 

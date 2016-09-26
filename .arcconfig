@@ -13,13 +13,13 @@
   "arc.feature.start.default": "origin/develop",
   "unit.xcode": {
     "build": {
-      "workspace": "MaterialMotionPopMotionFamily.xcworkspace",
+      "workspace": "MaterialMotionPopFamily.xcworkspace",
       "scheme": "UnitTests",
       "configuration": "Debug",
       "destination": "platform=iOS Simulator,name=iPhone 6s"
     },
     "coverage": {
-      "product": "MaterialMotionPopMotionFamily.framework/MaterialMotionPopMotionFamily"
+      "product": "MaterialMotionPopFamily.framework/MaterialMotionPopFamily"
     },
     "pre-build": "pod install"
   }
