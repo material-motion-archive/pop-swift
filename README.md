@@ -1,11 +1,17 @@
-# Material Motion Family Pop Swift
+# POP Material Motion Family written in Swift
 
 [![Build Status](https://travis-ci.org/material-motion/material-motion-family-pop-swift.svg?branch=develop)](https://travis-ci.org/material-motion/material-motion-family-pop-swift)
 [![codecov](https://codecov.io/gh/material-motion/material-motion-family-pop-swift/branch/develop/graph/badge.svg)](https://codecov.io/gh/material-motion/material-motion-family-pop-swift)
 
-The POP material motion family provides a bridge between
+The POP Material Motion family provides a bridge between
 [Facebook's POP library](https://github.com/facebook/pop) and the
 [Material Motion runtime](https://github.com/material-motion/material-motion-runtime-objc).
+
+## Plans
+
+`SpringTo` uses POP springs to animate properties with a simulated spring curve driven on the main
+thread of the application. `ConfigureSpring` allows you to configure the bounciness and speed of
+the spring for a given property.
 
 ## Installation
 
@@ -46,12 +52,34 @@ commands:
 
 ## Guides
 
-1. [Architecture](#architecture)
-2. [How to ...](#how-to-...)
+1. [How to animate a property with a SpringTo plan](#how-to-animate-a-property-with-a-springto-plan)
+2. [How to configure spring behavior](#how-to-configure-spring-behavior)
 
-### Architecture
+### How to animate a property with a SpringTo plan
 
-### How to ...
+Code snippets:
+
+***In Swift:***
+
+```swift
+let transaction = Transaction()
+transaction.add(plan: SpringTo(.<#property name#>, destination: <#Destination value#>),
+                to: <#Layer instance#>)
+```
+
+### How to configure spring behavior
+
+Code snippets:
+
+***In Swift:***
+
+```swift
+let transaction = Transaction()
+transaction.add(plan: ConfigureSpring(.<#Property name#>,
+                                      bounciness: .<#Bounciness#>,
+                                      speed: .<#Speed#>),
+                to: <#Layer instance#>)
+```
 
 ## Contributing
 
