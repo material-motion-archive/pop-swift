@@ -22,18 +22,23 @@ import MaterialMotionRuntime
  When multiple plans are added to the same property, the last-registered plan's destination will be
  used.
  */
-public class SpringTo: NSObject, Plan, POPPlan {
+public final class SpringTo: NSObject, Plan {
+  /** The property whose value should be pulled towards the destination. */
   public var property: POPProperty
+  /** The value to which the property should be pulled. */
   public var destination: Any
 
+  /** Initialize a SpringTo plan with a property and destination. */
   public init(_ property: POPProperty, destination: Any) {
     self.property = property
     self.destination = coerce(value: destination)
   }
 
+  /** The performer that will fulfill this plan. */
   public func performerClass() -> AnyClass {
     return POPPerformer.self
   }
+  /** Returns a copy of this plan. */
   public func copy(with zone: NSZone? = nil) -> Any {
     return SpringTo(property, destination: destination)
   }
