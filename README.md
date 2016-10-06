@@ -97,9 +97,9 @@ MDMConfigureSpring *configureSpring = [[MDMConfigureSpring alloc] initWithProper
 ***In Swift:***
 
 ```swift
-let configureSpring = ConfigureSpring(.<#Property name#>)
-configureSpring.tension = <#Tension value#>
-configureSpring.friction = <#Friction value#>
+let configureSpring = ConfigureSpring(.<#property name#>,
+                                      tension: <#tension#>,
+                                      friction: <#friction#>)
 scheduler.addPlan(configureSpring, to: <#Object#>)
 ```
 
