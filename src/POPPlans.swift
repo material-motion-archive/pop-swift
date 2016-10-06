@@ -22,6 +22,7 @@ import MaterialMotionRuntime
  When multiple plans are added to the same property, the last-registered plan's destination will be
  used.
  */
+@objc(MDMSpringTo)
 public final class SpringTo: NSObject, Plan {
   /** The property whose value should be pulled towards the destination. */
   public var property: POPProperty
@@ -43,6 +44,7 @@ public final class SpringTo: NSObject, Plan {
   public static let defaultFriction: CGFloat = 30
 
   /** Initialize a SpringTo plan with a property and destination. */
+  @objc(initWithProperty:destination:)
   public init(_ property: POPProperty, destination: Any) {
     self.property = property
     self.destination = coerce(value: destination)
@@ -63,6 +65,7 @@ public final class SpringTo: NSObject, Plan {
 
  Affects the spring behavior of the SpringTo plan.
  */
+@objc(MDMConfigureSpring)
 public final class ConfigureSpring: NSObject, Plan {
   /** The property whose spring traits should be configured. */
   public var property: POPProperty
@@ -72,18 +75,21 @@ public final class ConfigureSpring: NSObject, Plan {
 
    If nil, the spring's tension will not be changed.
    */
-  public var tension: CGFloat?
+  public var tension: CGFloat
 
   /**
    The friction coefficient for the property's spring.
 
    If nil, the spring's friction will not be changed.
    */
-  public var friction: CGFloat?
+  public var friction: CGFloat
 
   /** Initializes the configuration plan with a given property. */
-  public init(_ property: POPProperty) {
+  @objc(initWithProperty:tension:friction:)
+  public init(_ property: POPProperty, tension: CGFloat, friction: CGFloat) {
     self.property = property
+    self.tension = tension
+    self.friction = friction
   }
 
   /** The performer that will fulfill this plan. */
@@ -92,15 +98,13 @@ public final class ConfigureSpring: NSObject, Plan {
   }
   /** Returns a copy of this plan. */
   public func copy(with zone: NSZone? = nil) -> Any {
-    let plan = ConfigureSpring(property)
-    plan.friction = friction
-    plan.tension = tension
-    return plan
+    return ConfigureSpring(property, tension: tension, friction: friction)
   }
 }
 
 /** The animatable properties for use with the SpringTo plan. */
-public enum POPProperty {
+@objc(MDMPOPProperty)
+public enum POPProperty: Int {
   case layerBackgroundColor
   case layerBounds
   case layerCornerRadius

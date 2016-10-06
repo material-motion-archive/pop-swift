@@ -85,8 +85,9 @@ class SpringToTests: XCTestCase {
 
     let transaction = Transaction()
     transaction.add(plan: SpringTo(.layerPosition, destination: CGPoint(x: 10, y: 10)), to: layer)
-    let configuration = ConfigureSpring(.layerPosition)
-    configuration.friction = sqrt(4 * SpringTo.defaultTension) * 0.7
+    let configuration = ConfigureSpring(.layerPosition,
+                                        tension: SpringTo.defaultTension,
+                                        friction: sqrt(4 * SpringTo.defaultTension) * 0.7)
     transaction.add(plan: configuration, to: layer)
     scheduler.commit(transaction: transaction)
 

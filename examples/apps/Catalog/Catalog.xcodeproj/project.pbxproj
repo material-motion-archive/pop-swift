@@ -15,6 +15,7 @@
 		668484341D8241EC0032CEED /* TapToToggleExample1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668484321D8241EC0032CEED /* TapToToggleExample1.swift */; };
 		668484351D8241EC0032CEED /* TapToToggleExample2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668484331D8241EC0032CEED /* TapToToggleExample2.swift */; };
 		66A2777A1D99843500AFA57B /* SpringPropertyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A277791D99843500AFA57B /* SpringPropertyTests.swift */; };
+		66A2778B1DA6C6FD00AFA57B /* ObjectiveCAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A2778A1DA6C6FD00AFA57B /* ObjectiveCAPITests.m */; };
 		66F937341D90747E0085432F /* TestableSchedulerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F937331D90747E0085432F /* TestableSchedulerDelegate.swift */; };
 		D03A08901D591DFF003C85FE /* SpringToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A088F1D591DFF003C85FE /* SpringToTests.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		668484321D8241EC0032CEED /* TapToToggleExample1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapToToggleExample1.swift; sourceTree = "<group>"; };
 		668484331D8241EC0032CEED /* TapToToggleExample2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapToToggleExample2.swift; sourceTree = "<group>"; };
 		66A277791D99843500AFA57B /* SpringPropertyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringPropertyTests.swift; sourceTree = "<group>"; };
+		66A2778A1DA6C6FD00AFA57B /* ObjectiveCAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCAPITests.m; sourceTree = "<group>"; };
 		66F937331D90747E0085432F /* TestableSchedulerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableSchedulerDelegate.swift; sourceTree = "<group>"; };
 		677FB1942C52573291A445F0 /* Pods-MaterialMotionPopMotionFamily-Catalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialMotionPopMotionFamily-Catalog.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-MaterialMotionPopMotionFamily-Catalog/Pods-MaterialMotionPopMotionFamily-Catalog.release.xcconfig"; sourceTree = "<group>"; };
 		86F53EAE6C36C6C0E62B6777 /* Pods_MaterialMotionPopMotionFamily_Catalog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaterialMotionPopMotionFamily_Catalog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +178,7 @@
 			children = (
 				D03A088F1D591DFF003C85FE /* SpringToTests.swift */,
 				66A277791D99843500AFA57B /* SpringPropertyTests.swift */,
+				66A2778A1DA6C6FD00AFA57B /* ObjectiveCAPITests.m */,
 			);
 			name = unit;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 			files = (
 				66F937341D90747E0085432F /* TestableSchedulerDelegate.swift in Sources */,
 				66A2777A1D99843500AFA57B /* SpringPropertyTests.swift in Sources */,
+				66A2778B1DA6C6FD00AFA57B /* ObjectiveCAPITests.m in Sources */,
 				D03A08901D591DFF003C85FE /* SpringToTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

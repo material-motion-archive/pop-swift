@@ -80,12 +80,8 @@ extension POPPerformer {
 extension POPPerformer {
   fileprivate func addConfigureSpring(_ configureSpring: ConfigureSpring) {
     let springAnimation = springForProperty(configureSpring.property)
-    if let friction = configureSpring.friction {
-      springAnimation.dynamicsFriction = friction
-    }
-    if let tension = configureSpring.tension {
-      springAnimation.dynamicsTension = tension
-    }
+    springAnimation.dynamicsFriction = configureSpring.friction
+    springAnimation.dynamicsTension = configureSpring.tension
   }
 }
 

@@ -7,11 +7,18 @@ The POP Material Motion family provides a bridge between
 [Facebook's POP library](https://github.com/facebook/pop) and the
 [Material Motion runtime](https://github.com/material-motion/material-motion-runtime-objc).
 
-## Plans
+## Supported languages
+
+- Swift 3
+- Objective-C
+
+## Available plans
 
 `SpringTo` uses POP springs to animate properties with a simulated spring curve driven on the main
-thread of the application. `ConfigureSpring` allows you to configure the bounciness and speed of
-the spring for a given property.
+thread of the application.
+
+`ConfigureSpring` allows you to configure the friction and tension of the spring for a given
+property.
 
 ## Installation
 
@@ -59,26 +66,41 @@ commands:
 
 Code snippets:
 
+***In Objective-C:***
+
+```objc
+MDMSpringTo *springTo = [[MDMSpringTo alloc] initWithProperty:MDMPOPProperty<#property name#>
+                                                  destination:<#Destination value#>];
+[scheduler addPlan:springTo to:<#Object#>];
+```
+
 ***In Swift:***
 
 ```swift
-let transaction = Transaction()
-transaction.add(plan: SpringTo(.<#property name#>, destination: <#Destination value#>),
-                to: <#Layer instance#>)
+scheduler.addPlan(SpringTo(.<#property name#>, destination: <#Destination value#>),
+                  to: <#Object#>)
 ```
 
 ### How to configure spring behavior
 
 Code snippets:
 
+***In Objective-C:***
+
+```objc
+MDMConfigureSpring *configureSpring = [[MDMConfigureSpring alloc] initWithProperty:MDMPOPProperty<#property name#>
+                                                                           tension:<#tension#>
+                                                                          friction:<#friction#>];
+[scheduler addPlan:configureSpring to:<#Object#>];
+```
+
 ***In Swift:***
 
 ```swift
-let transaction = Transaction()
-transaction.add(plan: ConfigureSpring(.<#Property name#>,
-                                      bounciness: .<#Bounciness#>,
-                                      speed: .<#Speed#>),
-                to: <#Layer instance#>)
+let configureSpring = ConfigureSpring(.<#Property name#>)
+configureSpring.tension = <#Tension value#>
+configureSpring.friction = <#Friction value#>
+scheduler.addPlan(configureSpring, to: <#Object#>)
 ```
 
 ## Contributing
