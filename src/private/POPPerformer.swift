@@ -17,53 +17,25 @@
 import MaterialMotionRuntime
 import pop
 
-let defaultSpringBounciness: CGFloat = 15
-let defaultSpringSpeed: CGFloat = 5
-let propertiesWithNoSpring = Set(arrayLiteral: kPOPLayerOpacity)
-
-protocol POPPlan {
-  var property: POPProperty { get }
-  var destination: Any { get }
-}
-
 class POPPerformer: NSObject, PlanPerforming, DelegatedPerforming {
   let target: NSObject
   required init(target: Any) {
     self.target = target as! NSObject
   }
 
-  var activeAnimations: [String: POPPropertyAnimation] = [:]
+  var springs: [String: POPSpringAnimation] = [:]
   func add(plan: Plan) {
-    let popPlan = plan as! POPPlan
-
-    let propertyName = popPlan.property.name()
-
-    // Change to value if animation already registered.
-    if let existingAnimation = activeAnimations[propertyName] {
-      existingAnimation.toValue = popPlan.destination
-      return
+    switch plan {
+    case let springTo as SpringTo:
+      self.addSpringTo(springTo)
+    case let configureSpring as ConfigureSpring:
+      self.addConfigureSpring(configureSpring)
+    default:
+      assertionFailure("Unknown plan: \(plan)")
     }
-
-    let spring = popPlan as! SpringTo
-    let springAnimation = POPSpringAnimation(propertyNamed: propertyName)!
-
-    if propertiesWithNoSpring.contains(propertyName) {
-      springAnimation.springBounciness = 0
-    } else {
-      springAnimation.springBounciness = defaultSpringBounciness
-    }
-    springAnimation.springSpeed = defaultSpringSpeed
-
-    springAnimation.delegate = self
-    springAnimation.removedOnCompletion = false
-    springAnimation.toValue = popPlan.destination
-
-    activeAnimations[propertyName] = springAnimation
-
-    target.pop_add(springAnimation, forKey: nil)
   }
 
-  var tokens: [POPAnimation: DelegatedPerformingToken] = [:]
+  var tokens: [POPSpringAnimation: DelegatedPerformingToken] = [:]
   var willStart: DelegatedPerformanceTokenReturnBlock!
   var didEnd: DelegatedPerformanceTokenArgBlock!
   func setDelegatedPerformance(willStart: @escaping DelegatedPerformanceTokenReturnBlock,
@@ -74,12 +46,56 @@ class POPPerformer: NSObject, PlanPerforming, DelegatedPerforming {
 }
 
 extension POPPerformer {
-  func pop_animationDidStart(_ anim: POPAnimation!) {
+  fileprivate func springForProperty(_ property: POPProperty) -> POPSpringAnimation {
+    let propertyName = property.name()
+    if let existingAnimation = springs[propertyName] {
+      return existingAnimation
+    }
+
+    let springAnimation = POPSpringAnimation(propertyNamed: propertyName)!
+
+    springAnimation.dynamicsTension = SpringTo.defaultTension
+    springAnimation.dynamicsFriction = SpringTo.defaultFriction
+    springAnimation.delegate = self
+    springAnimation.removedOnCompletion = false
+
+    springs[propertyName] = springAnimation
+
+    target.pop_add(springAnimation, forKey: nil)
+
+    return springAnimation
+  }
+}
+
+// MARK: SpringTo
+extension POPPerformer {
+  fileprivate func addSpringTo(_ springTo: SpringTo) {
+    let springAnimation = springForProperty(springTo.property)
+    springAnimation.toValue = springTo.destination
+    springAnimation.isPaused = false
+  }
+}
+
+// MARK: ConfigureSpring
+extension POPPerformer {
+  fileprivate func addConfigureSpring(_ configureSpring: ConfigureSpring) {
+    let springAnimation = springForProperty(configureSpring.property)
+    if let friction = configureSpring.friction {
+      springAnimation.dynamicsFriction = friction
+    }
+    if let tension = configureSpring.tension {
+      springAnimation.dynamicsTension = tension
+    }
+  }
+}
+
+extension POPPerformer {
+  func pop_animationDidStart(_ anim: POPSpringAnimation!) {
     guard let token = self.willStart() else { return }
     tokens[anim] = token
   }
 
-  func pop_animationDidStop(_ anim: POPAnimation!, finished: Bool) {
+  func pop_animationDidStop(_ anim: POPSpringAnimation!, finished: Bool) {
     if finished {
       let token = tokens[anim]!
       self.didEnd(token)

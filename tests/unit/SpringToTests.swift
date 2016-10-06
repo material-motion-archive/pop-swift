@@ -61,4 +61,61 @@ class SpringToTests: XCTestCase {
     XCTAssertEqual(scheduler.activityState, .idle)
     XCTAssertEqual(layer.opacity, animation.destination as! Float)
   }
+
+  class PositionTraceLayer: CALayer {
+    var values: [CGPoint] = []
+
+    override var position: CGPoint {
+      set {
+        values.append(newValue)
+        super.position = newValue
+      }
+      get {
+        return super.position
+      }
+    }
+  }
+
+  func testNotBouncySpringIsLessBouncy() {
+    let layer = PositionTraceLayer()
+
+    let scheduler = Scheduler()
+    let delegate = TestableSchedulerDelegate()
+    scheduler.delegate = delegate
+
+    let transaction = Transaction()
+    transaction.add(plan: SpringTo(.layerPosition, destination: CGPoint(x: 10, y: 10)), to: layer)
+    let configuration = ConfigureSpring(.layerPosition)
+    configuration.friction = sqrt(4 * SpringTo.defaultTension) * 0.7
+    transaction.add(plan: configuration, to: layer)
+    scheduler.commit(transaction: transaction)
+
+    delegate.didIdleExpectation = expectation(description: "Did idle")
+    waitForExpectations(timeout: 1)
+
+    // Calculate the maximum overshoot; a bouncy spring should overshoot the destination value
+    XCTAssertEqual(scheduler.activityState, .idle)
+    var maxXPosition: CGFloat = 0
+    for point in layer.values {
+      maxXPosition = max(point.x, maxXPosition)
+    }
+    XCTAssertGreaterThan(maxXPosition, 10)
+
+    // Reset state
+    layer.position = .zero
+    layer.values.removeAll()
+
+    configuration.friction = sqrt(4 * SpringTo.defaultTension) * 1.0
+    transaction.add(plan: configuration, to: layer)
+    scheduler.commit(transaction: transaction)
+
+    delegate.activityStateDidChange = false
+    delegate.didIdleExpectation = expectation(description: "Did idle")
+    waitForExpectations(timeout: 1)
+
+    XCTAssertEqual(scheduler.activityState, .idle)
+    for point in layer.values {
+      XCTAssertLessThan(point.x, maxXPosition, "Expected not to overshoot springy max")
+    }
+  }
 }

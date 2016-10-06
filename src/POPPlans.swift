@@ -28,6 +28,20 @@ public final class SpringTo: NSObject, Plan {
   /** The value to which the property should be pulled. */
   public var destination: Any
 
+  /**
+   The default tension.
+
+   Default extracted from a POP spring with speed = 12 and bounciness = 4.
+   */
+  public static let defaultTension: CGFloat = 342
+
+  /**
+   The default friction.
+
+   Default extracted from a POP spring with speed = 12 and bounciness = 4.
+   */
+  public static let defaultFriction: CGFloat = 30
+
   /** Initialize a SpringTo plan with a property and destination. */
   public init(_ property: POPProperty, destination: Any) {
     self.property = property
@@ -41,6 +55,47 @@ public final class SpringTo: NSObject, Plan {
   /** Returns a copy of this plan. */
   public func copy(with zone: NSZone? = nil) -> Any {
     return SpringTo(property, destination: destination)
+  }
+}
+
+/**
+ Configure the spring traits for a given property.
+
+ Affects the spring behavior of the SpringTo plan.
+ */
+public final class ConfigureSpring: NSObject, Plan {
+  /** The property whose spring traits should be configured. */
+  public var property: POPProperty
+
+  /**
+   The tension coefficient for the property's spring.
+
+   If nil, the spring's tension will not be changed.
+   */
+  public var tension: CGFloat?
+
+  /**
+   The friction coefficient for the property's spring.
+
+   If nil, the spring's friction will not be changed.
+   */
+  public var friction: CGFloat?
+
+  /** Initializes the configuration plan with a given property. */
+  public init(_ property: POPProperty) {
+    self.property = property
+  }
+
+  /** The performer that will fulfill this plan. */
+  public func performerClass() -> AnyClass {
+    return POPPerformer.self
+  }
+  /** Returns a copy of this plan. */
+  public func copy(with zone: NSZone? = nil) -> Any {
+    let plan = ConfigureSpring(property)
+    plan.friction = friction
+    plan.tension = tension
+    return plan
   }
 }
 
