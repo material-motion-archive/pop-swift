@@ -28,8 +28,6 @@ class POPPerformer: NSObject, PlanPerforming, DelegatedPerforming {
     switch plan {
     case let springTo as SpringTo:
       self.addSpringTo(springTo)
-    case let configureSpring as ConfigureSpring:
-      self.addConfigureSpring(configureSpring)
     default:
       assertionFailure("Unknown plan: \(plan)")
     }
@@ -71,17 +69,12 @@ extension POPPerformer {
 extension POPPerformer {
   fileprivate func addSpringTo(_ springTo: SpringTo) {
     let springAnimation = springForProperty(springTo.property)
+    if let configuration = springTo.configuration {
+      springAnimation.dynamicsFriction = configuration.friction
+      springAnimation.dynamicsTension = configuration.tension
+    }
     springAnimation.toValue = springTo.destination
     springAnimation.isPaused = false
-  }
-}
-
-// MARK: ConfigureSpring
-extension POPPerformer {
-  fileprivate func addConfigureSpring(_ configureSpring: ConfigureSpring) {
-    let springAnimation = springForProperty(configureSpring.property)
-    springAnimation.dynamicsFriction = configureSpring.friction
-    springAnimation.dynamicsTension = configureSpring.tension
   }
 }
 

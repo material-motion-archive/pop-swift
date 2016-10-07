@@ -24,10 +24,19 @@ import MaterialMotionRuntime
  */
 @objc(MDMSpringTo)
 public final class SpringTo: NSObject, Plan {
+
   /** The property whose value should be pulled towards the destination. */
   public var property: POPProperty
+
   /** The value to which the property should be pulled. */
   public var destination: Any
+
+  /**
+   The spring's desired configuration.
+
+   If nil then the spring's configuration will not be affected.
+   */
+  public var configuration: SpringConfiguration?
 
   /**
    The default tension.
@@ -56,7 +65,11 @@ public final class SpringTo: NSObject, Plan {
   }
   /** Returns a copy of this plan. */
   public func copy(with zone: NSZone? = nil) -> Any {
-    return SpringTo(property, destination: destination)
+    let springTo = SpringTo(property, destination: destination)
+    if let configuration = configuration {
+      springTo.configuration = configuration.copy() as! SpringConfiguration
+    }
+    return springTo
   }
 }
 
@@ -65,11 +78,8 @@ public final class SpringTo: NSObject, Plan {
 
  Affects the spring behavior of the SpringTo plan.
  */
-@objc(MDMConfigureSpring)
-public final class ConfigureSpring: NSObject, Plan {
-  /** The property whose spring traits should be configured. */
-  public var property: POPProperty
-
+@objc(MDMSpringConfiguration)
+public final class SpringConfiguration: NSObject, NSCopying {
   /**
    The tension coefficient for the property's spring.
 
@@ -84,21 +94,16 @@ public final class ConfigureSpring: NSObject, Plan {
    */
   public var friction: CGFloat
 
-  /** Initializes the configuration plan with a given property. */
-  @objc(initWithProperty:tension:friction:)
-  public init(_ property: POPProperty, tension: CGFloat, friction: CGFloat) {
-    self.property = property
+  /** Initializes the configuration with a given tension and friction. */
+  @objc(initWithTension:friction:)
+  public init(tension: CGFloat, friction: CGFloat) {
     self.tension = tension
     self.friction = friction
   }
 
-  /** The performer that will fulfill this plan. */
-  public func performerClass() -> AnyClass {
-    return POPPerformer.self
-  }
-  /** Returns a copy of this plan. */
+  /** Returns a copy of this configuration. */
   public func copy(with zone: NSZone? = nil) -> Any {
-    return ConfigureSpring(property, tension: tension, friction: friction)
+    return SpringConfiguration(tension: tension, friction: friction)
   }
 }
 

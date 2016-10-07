@@ -84,11 +84,10 @@ class SpringToTests: XCTestCase {
     scheduler.delegate = delegate
 
     let transaction = Transaction()
-    transaction.add(plan: SpringTo(.layerPosition, destination: CGPoint(x: 10, y: 10)), to: layer)
-    let configuration = ConfigureSpring(.layerPosition,
-                                        tension: SpringTo.defaultTension,
-                                        friction: sqrt(4 * SpringTo.defaultTension) * 0.7)
-    transaction.add(plan: configuration, to: layer)
+    let springTo = SpringTo(.layerPosition, destination: CGPoint(x: 10, y: 10))
+    springTo.configuration = SpringConfiguration(tension: SpringTo.defaultTension,
+                                                 friction: sqrt(4 * SpringTo.defaultTension) * 0.7)
+    transaction.add(plan: springTo, to: layer)
     scheduler.commit(transaction: transaction)
 
     delegate.didIdleExpectation = expectation(description: "Did idle")
@@ -106,8 +105,9 @@ class SpringToTests: XCTestCase {
     layer.position = .zero
     layer.values.removeAll()
 
-    configuration.friction = sqrt(4 * SpringTo.defaultTension) * 1.0
-    transaction.add(plan: configuration, to: layer)
+    springTo.configuration = SpringConfiguration(tension: SpringTo.defaultTension,
+                                                 friction: sqrt(4 * SpringTo.defaultTension) * 1.0)
+    transaction.add(plan: springTo, to: layer)
     scheduler.commit(transaction: transaction)
 
     delegate.activityStateDidChange = false

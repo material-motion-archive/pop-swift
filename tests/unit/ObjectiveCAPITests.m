@@ -34,16 +34,13 @@
   XCTAssertEqual(springTo.destination, destination);
 }
 
-- (void)testConfigureSpringAPI {
-  MDMPOPProperty property = MDMPOPPropertyViewSize;
+- (void)testSpringConfigurationAPI {
   CGFloat tension = 300;
   CGFloat friction = 30;
-  MDMConfigureSpring *configureSpring = [[MDMConfigureSpring alloc] initWithProperty:property
-                                                                             tension:tension
-                                                                            friction:friction];
-  XCTAssertEqual(configureSpring.property, property);
-  XCTAssertEqual(configureSpring.tension, tension);
-  XCTAssertEqual(configureSpring.friction, friction);
+  MDMSpringConfiguration *configuration = [[MDMSpringConfiguration alloc] initWithTension:tension
+                                                                                 friction:friction];
+  XCTAssertEqual(configuration.tension, tension);
+  XCTAssertEqual(configuration.friction, friction);
 }
 
 @end
