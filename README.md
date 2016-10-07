@@ -17,9 +17,6 @@ The POP Material Motion family provides a bridge between
 `SpringTo` uses POP springs to animate properties with a simulated spring curve driven on the main
 thread of the application.
 
-`ConfigureSpring` allows you to configure the friction and tension of the spring for a given
-property.
-
 ## Installation
 
 ### Installation with CocoaPods
@@ -83,24 +80,23 @@ scheduler.addPlan(SpringTo(.<#property name#>, destination: <#Destination value#
 
 ### How to configure spring behavior
 
+A spring's behavior can be configured by setting a `SpringConfiguration` object on the SpringTo
+instance.
+
 Code snippets:
 
 ***In Objective-C:***
 
 ```objc
-MDMConfigureSpring *configureSpring = [[MDMConfigureSpring alloc] initWithProperty:MDMPOPProperty<#property name#>
-                                                                           tension:<#tension#>
-                                                                          friction:<#friction#>];
-[scheduler addPlan:configureSpring to:<#Object#>];
+springTo.configuration = [[MDMSpringConfiguration alloc] initWithTension:<#tension#>
+                                                                friction:<#friction#>];
 ```
 
 ***In Swift:***
 
 ```swift
-let configureSpring = ConfigureSpring(.<#property name#>,
-                                      tension: <#tension#>,
-                                      friction: <#friction#>)
-scheduler.addPlan(configureSpring, to: <#Object#>)
+springTo.configuration = SpringConfiguration(tension: <#tension#>,
+                                             friction: <#friction#>)
 ```
 
 ## Contributing
