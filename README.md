@@ -12,10 +12,23 @@ The POP Material Motion family provides a bridge between
 - Swift 3
 - Objective-C
 
-## Available plans
+## Features
 
-`SpringTo` uses POP springs to animate properties with a simulated spring curve driven on the main
-thread of the application.
+`SpringTo` uses POP springs to animate properties using spring physics driven on the main thread of
+the application.
+
+For example, you might use a SpringTo plan to move a view's position to a specific position on
+screen:
+
+```swift
+let springTo = SpringTo(.layerPosition destination: CGPoint(x: 10, y: 10))
+scheduler.addPlan(springTo, to: view.layer)
+```
+
+SpringTo supports the properties included in the POPProperty enum. Unlike POP, SpringTo does not
+presently support custom key paths.
+[Read the feature request](https://github.com/material-motion/material-motion-family-pop-swift/issues/19)
+for supporting custom key paths.
 
 ## Installation
 
@@ -74,8 +87,8 @@ MDMSpringTo *springTo = [[MDMSpringTo alloc] initWithProperty:MDMPOPProperty<#pr
 ***In Swift:***
 
 ```swift
-scheduler.addPlan(SpringTo(.<#property name#>, destination: <#Destination value#>),
-                  to: <#Object#>)
+let springTo = SpringTo(.<#property name#>, destination: <#Destination value#>)
+scheduler.addPlan(springTo, to: <#Object#>)
 ```
 
 ### How to configure spring behavior
@@ -95,8 +108,7 @@ springTo.configuration = [[MDMSpringConfiguration alloc] initWithTension:<#tensi
 ***In Swift:***
 
 ```swift
-springTo.configuration = SpringConfiguration(tension: <#tension#>,
-                                             friction: <#friction#>)
+springTo.configuration = SpringConfiguration(tension: <#tension#>, friction: <#friction#>)
 ```
 
 ## Contributing
