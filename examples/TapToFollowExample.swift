@@ -18,16 +18,8 @@ import UIKit
 import MaterialMotionRuntime
 import MaterialMotionPopFamily
 
-/**
- A demonstration of how to commit a POP animation to a layer using a Material Motion scheduler.
- */
-class TapToToggleExample1ViewController: UIViewController, SchedulerDelegate {
-
-  let minSize: CGFloat = 100.0
-  let maxSize: CGFloat = 280.0
-
-  let springSpeed: CGFloat = 15.0
-  let springBounciness: CGFloat = 18.0
+/** A demonstration of how to commit a SpringTo plan to a layer using a Material Motion scheduler. */
+class TapToFollowExampleViewController: UIViewController, SchedulerDelegate {
 
   // We create a single Scheduler for the lifetime of this view controller. How many schedulers you
   // decide to create is a matter of preference, but generally speaking it's fair to create one
@@ -39,52 +31,36 @@ class TapToToggleExample1ViewController: UIViewController, SchedulerDelegate {
     // self.view. In order to react to the activity state change events we set ourselves as the
     // scheduler's delegate.
     scheduler.delegate = self
+
+    title = type(of: self).catalogBreadcrumbs().last
   }
 
   // MARK: Reacting to user interactions
 
-  // State
-  var toggleState = false
+  func handleTap(gestureRecognizer: UITapGestureRecognizer) {
+    let location = gestureRecognizer.location(in: view)
+    let springPosition = SpringTo(.layerPosition, destination: location)
 
-  func handleTap(gestureRecognizer: UIGestureRecognizer) {
-    toggleState = !toggleState
+    let configuration = SpringConfiguration(tension: SpringTo.defaultTension,
+                                            friction: sqrt(4 * SpringTo.defaultTension) * 0.5)
+    springPosition.configuration = configuration
 
-    let posPercent = CGFloat(toggleState ? 1 : 0)
-    let newSize = posPercent * (maxSize - minSize) + minSize
-
-    let springBounds = SpringTo(.layerBounds, destination: CGRect(x: 0, y: 0,
-                                                                  width: newSize, height: newSize))
-    let springBorderRadius = SpringTo(.layerCornerRadius, destination: newSize / 2)
-
-    // vv Material Motion-specific code vv
-
-    // Here we create a new transaction with which we'll associate POP animations to targets.
-
-    // In this case we're associating POP animations with a CALayer instance (circle). We can
-    // also associate POP animations with UIView instances.
+    // Associate SpringTo with a target using a transaction.
 
     let transaction = Transaction()
-    transaction.add(plan: springBounds, to: circle)
-    transaction.add(plan: springBorderRadius, to: circle)
+    transaction.add(plan: springPosition, to: circle)
 
     // On commit, the runtime will create an entity capable of adding POP animations to layers.
     scheduler.commit(transaction: transaction)
-
-    // ## Why commit POP animations to a runtime?
-    //
-    // This example demonstrates an important point: the Material Motion runtime is able to receive
-    // objects defined by third party frameworks and to coordinate them alongside other animation
-    // and interaction plans. In particular, the schedulerActivityStateDidChange event demonstrates
-    // that we're able to track the overall activity state of many plans; this can be helpful for
-    // building view controller transitions.
-
-    // ^^ Material Motion-specific code ^^
   }
 
   func schedulerActivityStateDidChange(_ scheduler: Scheduler) {
     switch scheduler.activityState {
     case .active:
-      view.backgroundColor = .orange
+      view.backgroundColor = UIColor(red: CGFloat(0xE3) / 255.0,
+                                     green: CGFloat(0xF2) / 255.0,
+                                     blue: CGFloat(0xFD) / 255.0,
+                                     alpha: 1)
     case .idle:
       view.backgroundColor = .white
     }
@@ -101,10 +77,13 @@ class TapToToggleExample1ViewController: UIViewController, SchedulerDelegate {
     view.backgroundColor = .white
 
     circle = CALayer()
-    circle.bounds = CGRect(x: 0, y: 0, width: minSize, height: minSize)
+    circle.bounds = CGRect(x: 0, y: 0, width: 100, height: 100)
     circle.position = CGPoint(x: view.frame.width / 2, y: view.frame.height / 2)
     circle.cornerRadius = circle.bounds.width / 2
-    circle.backgroundColor = UIColor.red.cgColor
+    circle.backgroundColor = UIColor(red: CGFloat(0x21) / 255.0,
+                                     green: CGFloat(0x96) / 255.0,
+                                     blue: CGFloat(0xF3) / 255.0,
+                                     alpha: 1).cgColor
     view.layer.addSublayer(circle)
 
     let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(gestureRecognizer:)))
@@ -123,9 +102,5 @@ class TapToToggleExample1ViewController: UIViewController, SchedulerDelegate {
     super.init(coder: aDecoder)
 
     self.commonInit()
-  }
-
-  class func catalogBreadcrumbs() -> [String] {
-    return ["Tap to Toggle 1"]
   }
 }

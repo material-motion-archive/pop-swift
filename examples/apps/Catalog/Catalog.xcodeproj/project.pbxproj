@@ -12,10 +12,11 @@
 		666FAA841D384A6B000363DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666FAA831D384A6B000363DA /* AppDelegate.swift */; };
 		666FAA8B1D384A6B000363DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 666FAA8A1D384A6B000363DA /* Assets.xcassets */; };
 		666FAA8E1D384A6B000363DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 666FAA8C1D384A6B000363DA /* LaunchScreen.storyboard */; };
-		668484341D8241EC0032CEED /* TapToToggleExample1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668484321D8241EC0032CEED /* TapToToggleExample1.swift */; };
-		668484351D8241EC0032CEED /* TapToToggleExample2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668484331D8241EC0032CEED /* TapToToggleExample2.swift */; };
+		668484341D8241EC0032CEED /* TapToFollowExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668484321D8241EC0032CEED /* TapToFollowExample.swift */; };
+		668484351D8241EC0032CEED /* TapToToggleExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668484331D8241EC0032CEED /* TapToToggleExample.swift */; };
 		66A2777A1D99843500AFA57B /* SpringPropertyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A277791D99843500AFA57B /* SpringPropertyTests.swift */; };
 		66A2778B1DA6C6FD00AFA57B /* ObjectiveCAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A2778A1DA6C6FD00AFA57B /* ObjectiveCAPITests.m */; };
+		66A2778F1DAD43E800AFA57B /* TableOfContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A2778E1DAD43E800AFA57B /* TableOfContents.swift */; };
 		66F937341D90747E0085432F /* TestableSchedulerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F937331D90747E0085432F /* TestableSchedulerDelegate.swift */; };
 		D03A08901D591DFF003C85FE /* SpringToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A088F1D591DFF003C85FE /* SpringToTests.swift */; };
 /* End PBXBuildFile section */
@@ -42,10 +43,11 @@
 		666FAA941D384A6B000363DA /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		666FAA9A1D384A6B000363DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../UnitTests/Info.plist; sourceTree = "<group>"; };
 		666FAAA71D384D51000363DA /* UnitTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UnitTests-Bridging-Header.h"; path = "../UnitTests/UnitTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		668484321D8241EC0032CEED /* TapToToggleExample1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapToToggleExample1.swift; sourceTree = "<group>"; };
-		668484331D8241EC0032CEED /* TapToToggleExample2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapToToggleExample2.swift; sourceTree = "<group>"; };
+		668484321D8241EC0032CEED /* TapToFollowExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapToFollowExample.swift; sourceTree = "<group>"; };
+		668484331D8241EC0032CEED /* TapToToggleExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapToToggleExample.swift; sourceTree = "<group>"; };
 		66A277791D99843500AFA57B /* SpringPropertyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringPropertyTests.swift; sourceTree = "<group>"; };
 		66A2778A1DA6C6FD00AFA57B /* ObjectiveCAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCAPITests.m; sourceTree = "<group>"; };
+		66A2778E1DAD43E800AFA57B /* TableOfContents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableOfContents.swift; path = Catalog/TableOfContents.swift; sourceTree = "<group>"; };
 		66F937331D90747E0085432F /* TestableSchedulerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableSchedulerDelegate.swift; sourceTree = "<group>"; };
 		677FB1942C52573291A445F0 /* Pods-MaterialMotionPopMotionFamily-Catalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialMotionPopMotionFamily-Catalog.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-MaterialMotionPopMotionFamily-Catalog/Pods-MaterialMotionPopMotionFamily-Catalog.release.xcconfig"; sourceTree = "<group>"; };
 		86F53EAE6C36C6C0E62B6777 /* Pods_MaterialMotionPopMotionFamily_Catalog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaterialMotionPopMotionFamily_Catalog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,8 +99,9 @@
 		666FAA771D384A6B000363DA = {
 			isa = PBXGroup;
 			children = (
+				66A2778E1DAD43E800AFA57B /* TableOfContents.swift */,
 				666FAAA31D384B13000363DA /* examples */,
-				666FAAA61D384B77000363DA /* catalog */,
+				666FAAA61D384B77000363DA /* app */,
 				666FAA971D384A6B000363DA /* tests */,
 				666FAA821D384A6B000363DA /* resources */,
 				666FAA811D384A6B000363DA /* Products */,
@@ -139,8 +142,8 @@
 		666FAAA31D384B13000363DA /* examples */ = {
 			isa = PBXGroup;
 			children = (
-				668484321D8241EC0032CEED /* TapToToggleExample1.swift */,
-				668484331D8241EC0032CEED /* TapToToggleExample2.swift */,
+				668484321D8241EC0032CEED /* TapToFollowExample.swift */,
+				668484331D8241EC0032CEED /* TapToToggleExample.swift */,
 			);
 			name = examples;
 			path = ../..;
@@ -165,12 +168,12 @@
 			name = catalog;
 			sourceTree = "<group>";
 		};
-		666FAAA61D384B77000363DA /* catalog */ = {
+		666FAAA61D384B77000363DA /* app */ = {
 			isa = PBXGroup;
 			children = (
 				666FAA831D384A6B000363DA /* AppDelegate.swift */,
 			);
-			name = catalog;
+			name = app;
 			sourceTree = "<group>";
 		};
 		66A277771D9980CA00AFA57B /* unit */ = {
@@ -403,9 +406,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				668484351D8241EC0032CEED /* TapToToggleExample2.swift in Sources */,
+				668484351D8241EC0032CEED /* TapToToggleExample.swift in Sources */,
 				666FAA841D384A6B000363DA /* AppDelegate.swift in Sources */,
-				668484341D8241EC0032CEED /* TapToToggleExample1.swift in Sources */,
+				668484341D8241EC0032CEED /* TapToFollowExample.swift in Sources */,
+				66A2778F1DAD43E800AFA57B /* TableOfContents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

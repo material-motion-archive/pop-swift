@@ -35,9 +35,6 @@ private class SpringDiameter: NSObject, Plan {
     self.diameter = diameter
   }
 
-  var springSpeed: CGFloat = 15.0
-  var springBounciness: CGFloat = 18.0
-
   // Map this plan to our desired performer. This is a required method of the Plan protocol.
   func performerClass() -> AnyClass {
     return SpringDiameterPerformer.self
@@ -48,13 +45,14 @@ private class SpringDiameter: NSObject, Plan {
   }
 }
 
-class TapToToggleExample2ViewController: UIViewController {
+class TapToToggleExampleViewController: UIViewController {
 
   let minSize: CGFloat = 100.0
   let maxSize: CGFloat = 280.0
 
   func commonInit() {
     scheduler.delegate = self
+    title = type(of: self).catalogBreadcrumbs().last
   }
 
   // MARK: Reacting to user interactions
@@ -138,18 +136,21 @@ private class SpringDiameterPerformer: NSObject, PlanPerforming, ComposablePerfo
 
 // MARK: Example configuration
 
-extension TapToToggleExample2ViewController: SchedulerDelegate {
+extension TapToToggleExampleViewController: SchedulerDelegate {
   func schedulerActivityStateDidChange(_ scheduler: Scheduler) {
     switch scheduler.activityState {
     case .active:
-      view.backgroundColor = .orange
+      view.backgroundColor = UIColor(red: CGFloat(0xE3) / 255.0,
+                                     green: CGFloat(0xF2) / 255.0,
+                                     blue: CGFloat(0xFD) / 255.0,
+                                     alpha: 1)
     case .idle:
       view.backgroundColor = .white
     }
   }
 }
 
-extension TapToToggleExample2ViewController {
+extension TapToToggleExampleViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -159,16 +160,13 @@ extension TapToToggleExample2ViewController {
     circle.bounds = CGRect(x: 0, y: 0, width: minSize, height: minSize)
     circle.position = CGPoint(x: view.frame.width / 2, y: view.frame.height / 2)
     circle.cornerRadius = circle.bounds.width / 2
-    circle.backgroundColor = UIColor.red.cgColor
+    circle.backgroundColor = UIColor(red: CGFloat(0x21) / 255.0,
+                                     green: CGFloat(0x96) / 255.0,
+                                     blue: CGFloat(0xF3) / 255.0,
+                                     alpha: 1).cgColor
     view.layer.addSublayer(circle)
 
     let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(gestureRecognizer:)))
     view.addGestureRecognizer(tap)
-  }
-}
-
-extension TapToToggleExample2ViewController {
-  class func catalogBreadcrumbs() -> [String] {
-    return ["Tap to Toggle 2"]
   }
 }
