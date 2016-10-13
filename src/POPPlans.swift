@@ -67,7 +67,7 @@ public final class SpringTo: NSObject, Plan {
   public func copy(with zone: NSZone? = nil) -> Any {
     let springTo = SpringTo(property, destination: destination)
     if let configuration = configuration {
-      springTo.configuration = configuration.copy() as! SpringConfiguration
+      springTo.configuration = (configuration.copy() as! SpringConfiguration)
     }
     return springTo
   }

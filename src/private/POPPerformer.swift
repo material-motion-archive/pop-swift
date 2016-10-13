@@ -17,14 +17,14 @@
 import MaterialMotionRuntime
 import pop
 
-class POPPerformer: NSObject, PlanPerforming, DelegatedPerforming {
+class POPPerformer: NSObject, PlanPerforming, ContinuousPerforming {
   let target: NSObject
   required init(target: Any) {
     self.target = target as! NSObject
   }
 
   var springs: [String: POPSpringAnimation] = [:]
-  func add(plan: Plan) {
+  func addPlan(_ plan: Plan) {
     switch plan {
     case let springTo as SpringTo:
       self.addSpringTo(springTo)
@@ -33,13 +33,10 @@ class POPPerformer: NSObject, PlanPerforming, DelegatedPerforming {
     }
   }
 
-  var tokens: [POPSpringAnimation: DelegatedPerformingToken] = [:]
-  var willStart: DelegatedPerformanceTokenReturnBlock!
-  var didEnd: DelegatedPerformanceTokenArgBlock!
-  func setDelegatedPerformance(willStart: @escaping DelegatedPerformanceTokenReturnBlock,
-                               didEnd: @escaping DelegatedPerformanceTokenArgBlock) {
-    self.willStart = willStart
-    self.didEnd = didEnd
+  var tokens: [POPSpringAnimation: IsActiveTokenable] = [:]
+  var tokenGenerator: IsActiveTokenGenerating!
+  func set(isActiveTokenGenerator: IsActiveTokenGenerating) {
+    tokenGenerator = isActiveTokenGenerator
   }
 }
 
@@ -80,14 +77,14 @@ extension POPPerformer {
 
 extension POPPerformer {
   func pop_animationDidStart(_ anim: POPSpringAnimation!) {
-    guard let token = self.willStart() else { return }
+    guard let token = tokenGenerator.generate() else { return }
     tokens[anim] = token
   }
 
   func pop_animationDidStop(_ anim: POPSpringAnimation!, finished: Bool) {
     if finished {
       let token = tokens[anim]!
-      self.didEnd(token)
+      token.terminate()
       tokens.removeValue(forKey: anim)
     }
   }

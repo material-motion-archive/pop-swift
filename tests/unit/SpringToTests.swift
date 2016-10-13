@@ -25,16 +25,13 @@ class SpringToTests: XCTestCase {
 
     let layer = CALayer()
 
-    let transaction = Transaction()
-    transaction.add(plan: animation, to: layer)
-
     let scheduler = Scheduler()
     let delegate = TestableSchedulerDelegate()
 
     delegate.didIdleExpectation = expectation(description: "Did idle")
     scheduler.delegate = delegate
 
-    scheduler.commit(transaction: transaction)
+    scheduler.addPlan(animation, to: layer)
 
     waitForExpectations(timeout: 0.3)
     XCTAssertEqual(scheduler.activityState, .idle)
@@ -49,11 +46,9 @@ class SpringToTests: XCTestCase {
     let delegate = TestableSchedulerDelegate()
     scheduler.delegate = delegate
 
-    let transaction = Transaction()
-    transaction.add(plan: animation, to: layer)
+    scheduler.addPlan(animation, to: layer)
     animation.destination = Float(0.9)
-    transaction.add(plan: animation, to: layer)
-    scheduler.commit(transaction: transaction)
+    scheduler.addPlan(animation, to: layer)
 
     delegate.didIdleExpectation = expectation(description: "Did idle")
     waitForExpectations(timeout: 1)
@@ -83,12 +78,10 @@ class SpringToTests: XCTestCase {
     let delegate = TestableSchedulerDelegate()
     scheduler.delegate = delegate
 
-    let transaction = Transaction()
     let springTo = SpringTo(.layerPosition, destination: CGPoint(x: 10, y: 10))
     springTo.configuration = SpringConfiguration(tension: SpringTo.defaultTension,
                                                  friction: sqrt(4 * SpringTo.defaultTension) * 0.7)
-    transaction.add(plan: springTo, to: layer)
-    scheduler.commit(transaction: transaction)
+    scheduler.addPlan(springTo, to: layer)
 
     delegate.didIdleExpectation = expectation(description: "Did idle")
     waitForExpectations(timeout: 1)
@@ -107,8 +100,7 @@ class SpringToTests: XCTestCase {
 
     springTo.configuration = SpringConfiguration(tension: SpringTo.defaultTension,
                                                  friction: sqrt(4 * SpringTo.defaultTension) * 1.0)
-    transaction.add(plan: springTo, to: layer)
-    scheduler.commit(transaction: transaction)
+    scheduler.addPlan(springTo, to: layer)
 
     delegate.activityStateDidChange = false
     delegate.didIdleExpectation = expectation(description: "Did idle")

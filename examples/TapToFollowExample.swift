@@ -45,13 +45,8 @@ class TapToFollowExampleViewController: UIViewController, SchedulerDelegate {
                                             friction: sqrt(4 * SpringTo.defaultTension) * 0.5)
     springPosition.configuration = configuration
 
-    // Associate SpringTo with a target using a transaction.
-
-    let transaction = Transaction()
-    transaction.add(plan: springPosition, to: circle)
-
-    // On commit, the runtime will create an entity capable of adding POP animations to layers.
-    scheduler.commit(transaction: transaction)
+    // The scheduler will create an entity capable of adding POP animations to layers.
+    scheduler.addPlan(springPosition, to: circle)
   }
 
   func schedulerActivityStateDidChange(_ scheduler: Scheduler) {

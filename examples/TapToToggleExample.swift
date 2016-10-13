@@ -68,9 +68,7 @@ class TapToToggleExampleViewController: UIViewController {
     // Note that, unlike the first tap-to-toggle example, we only have to configure the relevant
     // properties of our desired plans.
 
-    let transaction = Transaction()
-    transaction.add(plan: SpringDiameter(to: newDiameter), to: circle)
-    scheduler.commit(transaction: transaction)
+    scheduler.addPlan(SpringDiameter(to: newDiameter), to: circle)
   }
 
   // Material Motion state
@@ -106,31 +104,22 @@ class TapToToggleExampleViewController: UIViewController {
 
 private class SpringDiameterPerformer: NSObject, PlanPerforming, ComposablePerforming {
   let target: CALayer
-  var emitter: TransactionEmitting!
-
   required init(target: Any) {
     self.target = target as! CALayer
   }
 
-  func add(plan: Plan) {
+  func addPlan(_ plan: Plan) {
     let diameterChange = plan as! SpringDiameter
 
-    let transaction = Transaction()
-    func add(plans: [Plan], to target: Any) {
-      for plan in plans {
-        transaction.add(plan: plan, to: target)
-      }
-    }
-    add(plans: [SpringTo(.layerBounds, destination: CGRect(x: 0, y: 0,
-                                                           width: diameterChange.diameter,
-                                                           height: diameterChange.diameter)),
-                SpringTo(.layerCornerRadius, destination: diameterChange.diameter / 2)],
-        to: target)
-    emitter.emit(transaction: transaction)
+    emitter.emitPlan(SpringTo(.layerBounds, destination: CGRect(x: 0, y: 0,
+                                                                width: diameterChange.diameter,
+                                                                height: diameterChange.diameter)))
+    emitter.emitPlan(SpringTo(.layerCornerRadius, destination: diameterChange.diameter / 2))
   }
 
-  func set(transactionEmitter: TransactionEmitting) {
-    self.emitter = transactionEmitter
+  var emitter: PlanEmitting!
+  func setPlanEmitter(_ planEmitter: PlanEmitting) {
+    self.emitter = planEmitter
   }
 }
 

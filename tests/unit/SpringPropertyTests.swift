@@ -46,12 +46,10 @@ class SpringPropertyTests: XCTestCase {
       (.layerShadowRadius, 1, "shadowRadius")
     ]
 
-    let transaction = Transaction()
     for (property, destination, _) in map {
       let animation = SpringTo(property, destination: destination)
-      transaction.add(plan: animation, to: layer)
+      scheduler.addPlan(animation, to: layer)
     }
-    scheduler.commit(transaction: transaction)
 
     waitForExpectations(timeout: 10)
     XCTAssertEqual(scheduler.activityState, .idle)
