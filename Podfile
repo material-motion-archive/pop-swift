@@ -1,7 +1,11 @@
-abstract_target 'MaterialMotionPopMotionFamily' do
-  pod 'MaterialMotionPopMotionFamily', :path => './'
+abstract_target 'MaterialMotionPopFamily' do
+  pod 'MaterialMotionRuntime'
+  pod 'pop'
+  pod 'CatalogByConvention'
 
-  workspace 'MaterialMotionPopMotionFamily.xcworkspace'
+  pod 'MaterialMotionPopFamily', :path => './'
+
+  workspace 'MaterialMotionPopFamily.xcworkspace'
   use_frameworks!
 
   target "Catalog" do
@@ -16,6 +20,9 @@ abstract_target 'MaterialMotionPopMotionFamily' do
     installer.pods_project.targets.each do |target|
       target.build_configurations.each do |configuration|
         configuration.build_settings['SWIFT_VERSION'] = "3.0"
+        if target.name.start_with?("Material")
+          configuration.build_settings['WARNING_CFLAGS'] ="$(inherited) -Wall -Wcast-align -Wconversion -Werror -Wextra -Wimplicit-atomic-properties -Wmissing-prototypes -Wno-sign-conversion -Wno-unused-parameter -Woverlength-strings -Wshadow -Wstrict-selector-match -Wundeclared-selector -Wunreachable-code"
+        end
       end
     end
   end
