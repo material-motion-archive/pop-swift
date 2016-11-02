@@ -1,6 +1,11 @@
-# release-candidate
+# 1.1.0
 
- TODO: Enumerate changes.
+Adds support for Runtime v5.
+
+## Source changes
+
+* [Add support for Runtime v5.0.0.](https://github.com/material-motion/material-motion-family-pop-swift/commit/77a585087c7615ba37df3d4ea94134e1aee1f9bb) (Jeff Verkoeyen)
+
 # 1.0.0
 
 Initial release.
