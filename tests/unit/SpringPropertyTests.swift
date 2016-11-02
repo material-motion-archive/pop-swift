@@ -25,10 +25,10 @@ class SpringPropertyTests: XCTestCase {
   func testLayerProperties() {
     let layer = CALayer()
 
-    let scheduler = Scheduler()
-    let delegate = TestableSchedulerDelegate()
+    let runtime = Runtime()
+    let delegate = TestableRuntimeDelegate()
     delegate.didIdleExpectation = expectation(description: "Did idle")
-    scheduler.delegate = delegate
+    runtime.delegate = delegate
 
     let map: [(POPProperty, Any, String)] = [
       (.layerBackgroundColor, UIColor.red.cgColor, "backgroundColor"),
@@ -48,11 +48,11 @@ class SpringPropertyTests: XCTestCase {
 
     for (property, destination, _) in map {
       let animation = SpringTo(property, destination: destination)
-      scheduler.addPlan(animation, to: layer)
+      runtime.addPlan(animation, to: layer)
     }
 
     waitForExpectations(timeout: 10)
-    XCTAssertEqual(scheduler.activityState, .idle)
+    XCTAssertEqual(runtime.activityState, .idle)
 
     for (_, destination, keyPath) in map {
       let finalValue = layer.value(forKeyPath: keyPath)!

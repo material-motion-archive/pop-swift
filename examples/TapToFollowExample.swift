@@ -18,19 +18,19 @@ import UIKit
 import MaterialMotionRuntime
 import MaterialMotionPopFamily
 
-/** A demonstration of how to commit a SpringTo plan to a layer using a Material Motion scheduler. */
-class TapToFollowExampleViewController: UIViewController, SchedulerDelegate {
+/** A demonstration of how to commit a SpringTo plan to a layer using a Material Motion runtime. */
+class TapToFollowExampleViewController: UIViewController, RuntimeDelegate {
 
-  // We create a single Scheduler for the lifetime of this view controller. How many schedulers you
+  // We create a single Runtime for the lifetime of this view controller. How many runtimes you
   // decide to create is a matter of preference, but generally speaking it's fair to create one
-  // scheduler per self-contained interaction or transition.
-  let scheduler = Scheduler()
+  // runtime per self-contained interaction or transition.
+  let runtime = Runtime()
 
   func commonInit() {
-    // In this demo we show the scheduler's activity state by changing the background color of
+    // In this demo we show the runtime's activity state by changing the background color of
     // self.view. In order to react to the activity state change events we set ourselves as the
-    // scheduler's delegate.
-    scheduler.delegate = self
+    // runtime's delegate.
+    runtime.delegate = self
 
     title = type(of: self).catalogBreadcrumbs().last
   }
@@ -45,12 +45,12 @@ class TapToFollowExampleViewController: UIViewController, SchedulerDelegate {
                                             friction: sqrt(4 * SpringTo.defaultTension) * 0.5)
     springPosition.configuration = configuration
 
-    // The scheduler will create an entity capable of adding POP animations to layers.
-    scheduler.addPlan(springPosition, to: circle)
+    // The runtime will create an entity capable of adding POP animations to layers.
+    runtime.addPlan(springPosition, to: circle)
   }
 
-  func schedulerActivityStateDidChange(_ scheduler: Scheduler) {
-    switch scheduler.activityState {
+  func runtimeActivityStateDidChange(_ runtime: Runtime) {
+    switch runtime.activityState {
     case .active:
       view.backgroundColor = UIColor(red: CGFloat(0xE3) / 255.0,
                                      green: CGFloat(0xF2) / 255.0,

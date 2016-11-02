@@ -25,8 +25,8 @@ import MaterialMotionPopFamily
 //
 // SpringDiameter exposes some configurable properties, notably the desired diameter.
 //
-// Rather than directly creating POP animation objects and adding them to the scheduler, we can now
-// register a SpringDiameter plan to the scheduler. We can now also reuse this plan throughout
+// Rather than directly creating POP animation objects and adding them to the runtime, we can now
+// register a SpringDiameter plan to the runtime. We can now also reuse this plan throughout
 // our code-base.
 
 private class SpringDiameter: NSObject, Plan {
@@ -51,7 +51,7 @@ class TapToToggleExampleViewController: UIViewController {
   let maxSize: CGFloat = 280.0
 
   func commonInit() {
-    scheduler.delegate = self
+    runtime.delegate = self
     title = type(of: self).catalogBreadcrumbs().last
   }
 
@@ -68,11 +68,11 @@ class TapToToggleExampleViewController: UIViewController {
     // Note that, unlike the first tap-to-toggle example, we only have to configure the relevant
     // properties of our desired plans.
 
-    scheduler.addPlan(SpringDiameter(to: newDiameter), to: circle)
+    runtime.addPlan(SpringDiameter(to: newDiameter), to: circle)
   }
 
   // Material Motion state
-  let scheduler = Scheduler()
+  let runtime = Runtime()
 
   // Visible entities
   var circle: CALayer!
@@ -96,13 +96,13 @@ class TapToToggleExampleViewController: UIViewController {
 // committed to targets.
 //
 // In this example we've defined a plan called SpringDiameter that requires this performer
-// type. When a SpringDiameter plan is committed to a scheduler, the scheduler will create an
+// type. When a SpringDiameter plan is committed to a runtime, the runtime will create an
 // instance of this performer (one instance per target) and provide the plan entities to it.
 //
 // Note that our add(plan:) method contains a decent amount of configuration logic that we now no
 // longer need to implement in our view controller.
 
-private class SpringDiameterPerformer: NSObject, PlanPerforming, ComposablePerforming {
+private class SpringDiameterPerformer: NSObject, ComposablePerforming {
   let target: CALayer
   required init(target: Any) {
     self.target = target as! CALayer
@@ -125,9 +125,9 @@ private class SpringDiameterPerformer: NSObject, PlanPerforming, ComposablePerfo
 
 // MARK: Example configuration
 
-extension TapToToggleExampleViewController: SchedulerDelegate {
-  func schedulerActivityStateDidChange(_ scheduler: Scheduler) {
-    switch scheduler.activityState {
+extension TapToToggleExampleViewController: RuntimeDelegate {
+  func runtimeActivityStateDidChange(_ runtime: Runtime) {
+    switch runtime.activityState {
     case .active:
       view.backgroundColor = UIColor(red: CGFloat(0xE3) / 255.0,
                                      green: CGFloat(0xF2) / 255.0,

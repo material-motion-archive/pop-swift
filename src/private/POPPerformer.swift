@@ -17,7 +17,7 @@
 import MaterialMotionRuntime
 import pop
 
-class POPPerformer: NSObject, PlanPerforming, ContinuousPerforming {
+class POPPerformer: NSObject, ContinuousPerforming {
   let target: NSObject
   required init(target: Any) {
     self.target = target as! NSObject
