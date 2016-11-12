@@ -18,6 +18,13 @@ import MaterialMotionRuntime
 import pop
 
 class POPPerformer: NSObject, ContinuousPerforming {
+  var addedAnimationKeys: [String] = []
+  deinit {
+    for key in addedAnimationKeys {
+      target.pop_removeAnimation(forKey: key)
+    }
+  }
+
   let target: NSObject
   required init(target: Any) {
     self.target = target as! NSObject
@@ -56,7 +63,9 @@ extension POPPerformer {
 
     springs[propertyName] = springAnimation
 
-    target.pop_add(springAnimation, forKey: nil)
+    let key = NSUUID().uuidString
+    addedAnimationKeys.append(key)
+    target.pop_add(springAnimation, forKey: key)
 
     return springAnimation
   }
