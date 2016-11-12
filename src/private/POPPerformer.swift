@@ -62,6 +62,7 @@ extension POPPerformer {
     springAnimation.removedOnCompletion = false
 
     springs[propertyName] = springAnimation
+    tokens[springAnimation] = tokenGenerator.generate()!
 
     let key = NSUUID().uuidString
     addedAnimationKeys.append(key)
@@ -86,6 +87,7 @@ extension POPPerformer {
 
 extension POPPerformer {
   func pop_animationDidStart(_ anim: POPSpringAnimation!) {
+    if tokens[anim] != nil { return }
     guard let token = tokenGenerator.generate() else { return }
     tokens[anim] = token
   }
