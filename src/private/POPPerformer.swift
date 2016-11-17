@@ -48,14 +48,18 @@ class POPPerformer: NSObject, ContinuousPerforming {
     springAnimation.dynamicsTension = springTo.configuration.tension
     springAnimation.toValue = springTo.destination
     springAnimation.isPaused = false
+
+    if tokens[springAnimation] == nil {
+      tokens[springAnimation] = tokenGenerator.generate()!
+    }
   }
 
   // MARK: POP delegation
 
   func pop_animationDidStart(_ anim: POPSpringAnimation!) {
-    if tokens[anim] != nil { return }
-    guard let token = tokenGenerator.generate() else { return }
-    tokens[anim] = token
+    if tokens[anim] == nil {
+      tokens[anim] = tokenGenerator.generate()!
+    }
   }
 
   func pop_animationDidStop(_ anim: POPSpringAnimation!, finished: Bool) {
@@ -81,7 +85,6 @@ class POPPerformer: NSObject, ContinuousPerforming {
     springAnimation.removedOnCompletion = false
 
     springs[property] = springAnimation
-    tokens[springAnimation] = tokenGenerator.generate()!
 
     let key = NSUUID().uuidString
     addedAnimationKeys.append(key)
