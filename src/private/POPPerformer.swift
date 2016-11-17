@@ -30,7 +30,7 @@ class POPPerformer: NSObject, ContinuousPerforming {
     self.target = target as! NSObject
   }
 
-  var springs: [String: POPSpringAnimation] = [:]
+  var springs: [POPProperty: POPSpringAnimation] = [:]
   func addPlan(_ plan: Plan) {
     switch plan {
     case let springTo as SpringTo:
@@ -49,19 +49,18 @@ class POPPerformer: NSObject, ContinuousPerforming {
 
 extension POPPerformer {
   fileprivate func springForProperty(_ property: POPProperty) -> POPSpringAnimation {
-    let propertyName = property.name()
-    if let existingAnimation = springs[propertyName] {
+    if let existingAnimation = springs[property] {
       return existingAnimation
     }
 
-    let springAnimation = POPSpringAnimation(propertyNamed: propertyName)!
+    let springAnimation = POPSpringAnimation(propertyNamed: property.name())!
 
     springAnimation.dynamicsTension = SpringTo.defaultTension
     springAnimation.dynamicsFriction = SpringTo.defaultFriction
     springAnimation.delegate = self
     springAnimation.removedOnCompletion = false
 
-    springs[propertyName] = springAnimation
+    springs[property] = springAnimation
     tokens[springAnimation] = tokenGenerator.generate()!
 
     let key = NSUUID().uuidString
