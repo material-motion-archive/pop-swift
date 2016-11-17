@@ -63,8 +63,7 @@ class POPPerformer: NSObject, ContinuousPerforming {
   }
 
   func pop_animationDidStop(_ anim: POPSpringAnimation!, finished: Bool) {
-    if finished {
-      let token = tokens[anim]!
+    if let token = tokens[anim] {
       token.terminate()
       tokens.removeValue(forKey: anim)
     }
