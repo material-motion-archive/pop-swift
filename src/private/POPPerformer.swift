@@ -76,10 +76,8 @@ extension POPPerformer {
 extension POPPerformer {
   fileprivate func addSpringTo(_ springTo: SpringTo) {
     let springAnimation = springForProperty(springTo.property)
-    if let configuration = springTo.configuration {
-      springAnimation.dynamicsFriction = configuration.friction
-      springAnimation.dynamicsTension = configuration.tension
-    }
+    springAnimation.dynamicsFriction = springTo.configuration.friction
+    springAnimation.dynamicsTension = springTo.configuration.tension
     springAnimation.toValue = springTo.destination
     springAnimation.isPaused = false
   }

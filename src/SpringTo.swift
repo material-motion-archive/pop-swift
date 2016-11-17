@@ -36,7 +36,8 @@ public final class SpringTo: NSObject, Plan {
 
    If nil then the spring's configuration will not be affected.
    */
-  public var configuration: SpringConfiguration?
+  public var configuration = SpringConfiguration(tension: SpringTo.defaultTension,
+                                                 friction: SpringTo.defaultFriction)
 
   /**
    The default tension.
@@ -66,9 +67,7 @@ public final class SpringTo: NSObject, Plan {
   /** Returns a copy of this plan. */
   public func copy(with zone: NSZone? = nil) -> Any {
     let springTo = SpringTo(property, destination: destination)
-    if let configuration = configuration {
-      springTo.configuration = (configuration.copy() as! SpringConfiguration)
-    }
+    springTo.configuration = (configuration.copy() as! SpringConfiguration)
     return springTo
   }
 }
