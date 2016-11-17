@@ -41,9 +41,9 @@ for supporting custom key paths.
 >
 >     gem install cocoapods
 
-Add `MaterialMotionPopFamily` to your `Podfile`:
+Add `MaterialMotionPop` to your `Podfile`:
 
-    pod 'MaterialMotionPopFamily'
+    pod 'MaterialMotionPop'
 
 Then run the following command:
 
@@ -53,7 +53,7 @@ Then run the following command:
 
 Import the framework:
 
-    @import MaterialMotionPopFamily;
+    @import MaterialMotionPop;
 
 You will now have access to all of the APIs.
 
@@ -65,7 +65,7 @@ commands:
     git clone https://github.com/material-motion/pop-swift.git
     cd pop-swift
     pod install
-    open MaterialMotionPopFamily.xcworkspace
+    open MaterialMotionPop.xcworkspace
 
 ## Guides
 

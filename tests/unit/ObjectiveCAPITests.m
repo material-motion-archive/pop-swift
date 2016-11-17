@@ -17,7 +17,7 @@
 #import <XCTest/XCTest.h>
 
 @import MaterialMotionRuntime;
-@import MaterialMotionPopFamily;
+@import MaterialMotionPop;
 
 @interface ObjectiveCAPITests : XCTestCase
 @end

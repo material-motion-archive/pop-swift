@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name         = "MaterialMotionPopFamily"
+  s.name         = "MaterialMotionPop"
   s.summary      = "POP for Material Motion (Swift)"
   s.version      = "1.1.0"
   s.authors      = "The Material Motion Authors"
