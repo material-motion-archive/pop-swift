@@ -63,12 +63,6 @@ class SpringPropertyTests: XCTestCase {
         XCTAssertEqualWithAccuracy(value, (finalValue as! NSNumber).doubleValue, accuracy: 0.001, keyPath)
       case let value as Int:
         XCTAssertEqualWithAccuracy(Double(value), (finalValue as! NSNumber).doubleValue, accuracy: 0.01, keyPath)
-      case let value as CGColor:
-        let finalColor = finalValue as! CGColor
-        XCTAssertEqual(finalColor.numberOfComponents, value.numberOfComponents)
-        for index in 0..<finalColor.numberOfComponents {
-          XCTAssertEqual(finalColor.components![index], value.components![index])
-        }
       case let value as CGPoint:
         let finalPoint = (finalValue as! NSValue).cgPointValue
         XCTAssertEqualWithAccuracy(value.x, finalPoint.x, accuracy: 0.001, keyPath)
@@ -79,6 +73,12 @@ class SpringPropertyTests: XCTestCase {
         XCTAssertEqualWithAccuracy(value.origin.y, finalRect.origin.y, accuracy: 0.001, keyPath)
         XCTAssertEqualWithAccuracy(value.size.width, finalRect.size.width, accuracy: 0.001, keyPath)
         XCTAssertEqualWithAccuracy(value.size.height, finalRect.size.height, accuracy: 0.001, keyPath)
+      case let value as CGColor:
+        let finalColor = finalValue as! CGColor
+        XCTAssertEqual(finalColor.numberOfComponents, value.numberOfComponents)
+        for index in 0..<finalColor.numberOfComponents {
+          XCTAssertEqual(finalColor.components![index], value.components![index])
+        }
       case let value as NSObject:
         XCTAssertEqual(value, (finalValue as! NSObject), keyPath)
       default:
