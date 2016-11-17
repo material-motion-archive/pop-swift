@@ -6,5 +6,5 @@ xcodebuild_arguments:
   - MaterialMotionPopFamily.xcworkspace
   - -scheme
   - MaterialMotionPopFamily
-github_url: https://github.com/material-motion/material-motion-family-pop-swift
-github_file_prefix: https://github.com/material-motion/material-motion-family-pop-swift/tree/v1.1.0
+github_url: https://github.com/material-motion/pop-swift
+github_file_prefix: https://github.com/material-motion/pop-swift/tree/v1.1.0
