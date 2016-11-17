@@ -1,5 +1,5 @@
 abstract_target 'MaterialMotionPopFamily' do
-  pod 'MaterialMotionRuntime', "~> 5.0"
+  pod 'MaterialMotionRuntime', "~> 6.0"
   pod 'pop'
   pod 'CatalogByConvention'
 
