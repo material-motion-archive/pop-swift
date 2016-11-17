@@ -40,15 +40,35 @@ class POPPerformer: NSObject, ContinuousPerforming {
     }
   }
 
-  var tokens: [POPSpringAnimation: IsActiveTokenable] = [:]
-  var tokenGenerator: IsActiveTokenGenerating!
-  func set(isActiveTokenGenerator: IsActiveTokenGenerating) {
-    tokenGenerator = isActiveTokenGenerator
-  }
-}
+  // MARK: SpringTo
 
-extension POPPerformer {
-  fileprivate func springForProperty(_ property: POPProperty) -> POPSpringAnimation {
+  private func addSpringTo(_ springTo: SpringTo) {
+    let springAnimation = springForProperty(springTo.property)
+    springAnimation.dynamicsFriction = springTo.configuration.friction
+    springAnimation.dynamicsTension = springTo.configuration.tension
+    springAnimation.toValue = springTo.destination
+    springAnimation.isPaused = false
+  }
+
+  // MARK: POP delegation
+
+  func pop_animationDidStart(_ anim: POPSpringAnimation!) {
+    if tokens[anim] != nil { return }
+    guard let token = tokenGenerator.generate() else { return }
+    tokens[anim] = token
+  }
+
+  func pop_animationDidStop(_ anim: POPSpringAnimation!, finished: Bool) {
+    if finished {
+      let token = tokens[anim]!
+      token.terminate()
+      tokens.removeValue(forKey: anim)
+    }
+  }
+
+  // MARK: Internal state
+
+  private func springForProperty(_ property: POPProperty) -> POPSpringAnimation {
     if let existingAnimation = springs[property] {
       return existingAnimation
     }
@@ -69,32 +89,13 @@ extension POPPerformer {
 
     return springAnimation
   }
-}
 
-// MARK: SpringTo
-extension POPPerformer {
-  fileprivate func addSpringTo(_ springTo: SpringTo) {
-    let springAnimation = springForProperty(springTo.property)
-    springAnimation.dynamicsFriction = springTo.configuration.friction
-    springAnimation.dynamicsTension = springTo.configuration.tension
-    springAnimation.toValue = springTo.destination
-    springAnimation.isPaused = false
-  }
-}
+  // MARK: Performer specialization
 
-extension POPPerformer {
-  func pop_animationDidStart(_ anim: POPSpringAnimation!) {
-    if tokens[anim] != nil { return }
-    guard let token = tokenGenerator.generate() else { return }
-    tokens[anim] = token
-  }
-
-  func pop_animationDidStop(_ anim: POPSpringAnimation!, finished: Bool) {
-    if finished {
-      let token = tokens[anim]!
-      token.terminate()
-      tokens.removeValue(forKey: anim)
-    }
+  var tokens: [POPSpringAnimation: IsActiveTokenable] = [:]
+  var tokenGenerator: IsActiveTokenGenerating!
+  func set(isActiveTokenGenerator: IsActiveTokenGenerating) {
+    tokenGenerator = isActiveTokenGenerator
   }
 }
 
