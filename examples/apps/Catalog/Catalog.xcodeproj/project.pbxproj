@@ -111,8 +111,10 @@
 		666FAA971D384A6B000363DA /* tests */ = {
 			isa = PBXGroup;
 			children = (
+				D03A088F1D591DFF003C85FE /* SpringToTests.swift */,
+				66A277791D99843500AFA57B /* SpringPropertyTests.swift */,
+				66A2778A1DA6C6FD00AFA57B /* ObjectiveCAPITests.m */,
 				66A277781D9980D600AFA57B /* helpers */,
-				66A277771D9980CA00AFA57B /* unit */,
 			);
 			name = tests;
 			path = ../../../tests/unit;
@@ -153,16 +155,6 @@
 				666FAA831D384A6B000363DA /* AppDelegate.swift */,
 			);
 			name = app;
-			sourceTree = "<group>";
-		};
-		66A277771D9980CA00AFA57B /* unit */ = {
-			isa = PBXGroup;
-			children = (
-				D03A088F1D591DFF003C85FE /* SpringToTests.swift */,
-				66A277791D99843500AFA57B /* SpringPropertyTests.swift */,
-				66A2778A1DA6C6FD00AFA57B /* ObjectiveCAPITests.m */,
-			);
-			name = unit;
 			sourceTree = "<group>";
 		};
 		66A277781D9980D600AFA57B /* helpers */ = {

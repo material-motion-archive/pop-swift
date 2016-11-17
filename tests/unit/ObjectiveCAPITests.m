@@ -43,4 +43,13 @@
   XCTAssertEqual(configuration.friction, friction);
 }
 
+- (void)testPauseSpringAPI {
+  MDMPOPProperty property = MDMPOPPropertyViewSize;
+  UIGestureRecognizer *gestureRecognizer = [UIGestureRecognizer new];
+  MDMPauseSpring *pauseSpring = [[MDMPauseSpring alloc] initWithProperty:property
+                                                       gestureRecognizer:gestureRecognizer];
+  XCTAssertEqual(pauseSpring.property, property);
+  XCTAssertEqual(pauseSpring.gestureRecognizer, gestureRecognizer);
+}
+
 @end

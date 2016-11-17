@@ -18,9 +18,8 @@ import MaterialMotionRuntime
 import pop
 
 class POPPerformer: NSObject, ContinuousPerforming {
-  var addedAnimationKeys: [String] = []
   deinit {
-    for key in addedAnimationKeys {
+    for key in springs.values.map({ $0.key }) {
       target.pop_removeAnimation(forKey: key)
     }
   }
@@ -30,11 +29,12 @@ class POPPerformer: NSObject, ContinuousPerforming {
     self.target = target as! NSObject
   }
 
-  var springs: [POPProperty: POPSpringAnimation] = [:]
   func addPlan(_ plan: Plan) {
     switch plan {
     case let springTo as SpringTo:
       self.addSpringTo(springTo)
+    case let pauseSpring as PauseSpring:
+      self.addPauseSpring(pauseSpring)
     default:
       assertionFailure("Unknown plan: \(plan)")
     }
@@ -43,14 +43,63 @@ class POPPerformer: NSObject, ContinuousPerforming {
   // MARK: SpringTo
 
   private func addSpringTo(_ springTo: SpringTo) {
-    let springAnimation = springForProperty(springTo.property)
-    springAnimation.dynamicsFriction = springTo.configuration.friction
-    springAnimation.dynamicsTension = springTo.configuration.tension
-    springAnimation.toValue = springTo.destination
-    springAnimation.isPaused = false
+    let spring = springForProperty(springTo.property)
+    spring.animation.dynamicsFriction = springTo.configuration.friction
+    spring.animation.dynamicsTension = springTo.configuration.tension
+    spring.animation.toValue = springTo.destination
+    spring.animation.isPaused = false
 
-    if tokens[springAnimation] == nil {
-      tokens[springAnimation] = tokenGenerator.generate()!
+    if tokens[spring.animation] == nil {
+      tokens[spring.animation] = tokenGenerator.generate()!
+    }
+  }
+
+  // MARK: PauseSpring
+
+  var gestureRecognizerToProperties: [UIGestureRecognizer: [POPProperty]] = [:]
+  private func addPauseSpring(_ pauseSpring: PauseSpring) {
+    pauseSpring.gestureRecognizer.addTarget(self, action: #selector(gestureDidUpdate))
+
+    gestureRecognizerToProperties[pauseSpring.gestureRecognizer,
+                                  withDefault: []].append(pauseSpring.property)
+
+    gestureDidUpdate(pauseSpring.gestureRecognizer)
+  }
+
+  // MARK: Gesture events
+
+  func gestureDidUpdate(_ gestureRecognizer: UIGestureRecognizer) {
+    let gestureIsActive = gestureRecognizer.state == .began || gestureRecognizer.state == .changed
+    if gestureIsActive {
+      for property in gestureRecognizerToProperties[gestureRecognizer]! {
+        guard let spring = springs[property] else {
+          continue
+        }
+        spring.activeGestureRecognizers.insert(gestureRecognizer)
+        target.pop_removeAnimation(forKey: spring.key)
+      }
+      return
+    }
+
+    for property in gestureRecognizerToProperties[gestureRecognizer]! {
+      guard let spring = springs[property] else {
+        continue
+      }
+      spring.activeGestureRecognizers.remove(gestureRecognizer)
+
+      if spring.activeGestureRecognizers.count == 0 {
+        spring.animation.fromValue = nil
+
+        // We create a copy of the animation in order to blow away internal POP state from the old
+        // animation.
+        let copy = spring.animation.copy() as! POPSpringAnimation
+        spring.animation = copy
+
+        // Eventually terminated by pop_animationDidStop.
+        tokens[copy] = tokenGenerator.generate()!
+
+        target.pop_add(spring.animation, forKey: spring.key)
+      }
     }
   }
 
@@ -71,25 +120,24 @@ class POPPerformer: NSObject, ContinuousPerforming {
 
   // MARK: Internal state
 
-  private func springForProperty(_ property: POPProperty) -> POPSpringAnimation {
-    if let existingAnimation = springs[property] {
-      return existingAnimation
+  var springs: [POPProperty: Spring] = [:]
+  private func springForProperty(_ property: POPProperty) -> Spring {
+    if let spring = springs[property] {
+      return spring
     }
 
     let springAnimation = POPSpringAnimation(propertyNamed: property.name())!
-
+    let spring = Spring(animation: springAnimation)
     springAnimation.dynamicsTension = SpringTo.defaultTension
     springAnimation.dynamicsFriction = SpringTo.defaultFriction
     springAnimation.delegate = self
     springAnimation.removedOnCompletion = false
 
-    springs[property] = springAnimation
+    springs[property] = spring
 
-    let key = NSUUID().uuidString
-    addedAnimationKeys.append(key)
-    target.pop_add(springAnimation, forKey: key)
+    target.pop_add(springAnimation, forKey: spring.key)
 
-    return springAnimation
+    return spring
   }
 
   // MARK: Performer specialization
@@ -98,6 +146,29 @@ class POPPerformer: NSObject, ContinuousPerforming {
   var tokenGenerator: IsActiveTokenGenerating!
   func set(isActiveTokenGenerator: IsActiveTokenGenerating) {
     tokenGenerator = isActiveTokenGenerator
+  }
+}
+
+class Spring {
+  var animation: POPSpringAnimation
+  let key = NSUUID().uuidString
+  var activeGestureRecognizers = Set<UIGestureRecognizer>()
+  init(animation: POPSpringAnimation) {
+    self.animation = animation
+  }
+}
+
+extension Dictionary {
+  fileprivate subscript(key: Key, withDefault value: @autoclosure () -> Value) -> Value {
+    mutating get {
+      if self[key] == nil {
+        self[key] = value()
+      }
+      return self[key]!
+    }
+    set {
+      self[key] = newValue
+    }
   }
 }
 
