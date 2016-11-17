@@ -36,22 +36,19 @@ public final class SpringTo: NSObject, Plan {
 
    If nil then the spring's configuration will not be affected.
    */
-  public var configuration = SpringConfiguration(tension: SpringTo.defaultTension,
-                                                 friction: SpringTo.defaultFriction)
+  public var configuration = SpringTo.defaultConfiguration
 
   /**
-   The default tension.
+   The default spring configuration.
 
    Default extracted from a POP spring with speed = 12 and bounciness = 4.
    */
-  public static let defaultTension: CGFloat = 342
-
-  /**
-   The default friction.
-
-   Default extracted from a POP spring with speed = 12 and bounciness = 4.
-   */
-  public static let defaultFriction: CGFloat = 30
+  public static var defaultConfiguration: SpringConfiguration {
+    get {
+      // Always return a new instance so that the values can't be changed externally.
+      return SpringConfiguration(tension: 342, friction: 30)
+    }
+  }
 
   /** Initialize a SpringTo plan with a property and destination. */
   @objc(initWithProperty:destination:)
@@ -70,6 +67,22 @@ public final class SpringTo: NSObject, Plan {
     springTo.configuration = (configuration.copy() as! SpringConfiguration)
     return springTo
   }
+
+  /**
+   The default tension.
+
+   Default extracted from a POP spring with speed = 12 and bounciness = 4.
+   */
+  @available(*, deprecated, message: "Use defaultConfiguration instead. Deprecated in v1.2.0.")
+  public static let defaultTension: CGFloat = 342
+
+  /**
+   The default friction.
+
+   Default extracted from a POP spring with speed = 12 and bounciness = 4.
+   */
+  @available(*, deprecated, message: "Use defaultConfiguration instead. Deprecated in v1.2.0.")
+  public static let defaultFriction: CGFloat = 30
 }
 
 /**
