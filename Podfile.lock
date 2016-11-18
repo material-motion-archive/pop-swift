@@ -1,27 +1,27 @@
 PODS:
   - CatalogByConvention (2.0.0)
-  - MaterialMotionPopFamily (1.1.0):
-    - MaterialMotionRuntime (< 6.0, >= 4.0)
+  - MaterialMotionPop (1.2.0):
+    - MaterialMotionRuntime (< 7.0, >= 4.0)
     - pop (~> 1.0)
-  - MaterialMotionRuntime (5.0.0)
+  - MaterialMotionRuntime (6.0.0)
   - pop (1.0.9)
 
 DEPENDENCIES:
   - CatalogByConvention
-  - MaterialMotionPopFamily (from `./`)
-  - MaterialMotionRuntime (~> 5.0)
+  - MaterialMotionPop (from `./`)
+  - MaterialMotionRuntime (~> 6.0)
   - pop
 
 EXTERNAL SOURCES:
-  MaterialMotionPopFamily:
+  MaterialMotionPop:
     :path: "./"
 
 SPEC CHECKSUMS:
   CatalogByConvention: be55c2263132e4f9f59299ac8a528ee8715b3275
-  MaterialMotionPopFamily: 0e8973ae196a574f40ce1248644cae4c3e3109a2
-  MaterialMotionRuntime: 620695e40aaf12f728342cef0b784b1d3eaa1125
+  MaterialMotionPop: e0bbab3b6c2c7b0083a9a3892e6bddf267f2fb09
+  MaterialMotionRuntime: 89cb395df1ce02134fc67a16b42dc4492b6c514c
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
 
-PODFILE CHECKSUM: 5c3b9864b0ff4e6389f407820e9572b0a92947e6
+PODFILE CHECKSUM: 82ddcbf2f7d815971ee890ac914a41dba744ab78
 
 COCOAPODS: 1.1.1

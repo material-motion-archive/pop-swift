@@ -16,7 +16,7 @@
 
 import UIKit
 import MaterialMotionRuntime
-import MaterialMotionPopFamily
+import MaterialMotionPop
 
 // A demonstration of how to define composite plans.
 //

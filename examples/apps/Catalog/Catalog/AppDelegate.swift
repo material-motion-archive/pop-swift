@@ -27,9 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window = window
 
     let rootViewController = CBCNodeListViewController(node: CBCCreateNavigationTree())
-    rootViewController.title = "Material Motion POP Family"
-
+    rootViewController.title = "POP for Material Motion (Swift)"
     window.rootViewController = UINavigationController(rootViewController: rootViewController)
+
     window.makeKeyAndVisible()
     return true
   }

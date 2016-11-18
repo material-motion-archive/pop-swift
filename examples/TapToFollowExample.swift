@@ -16,7 +16,7 @@
 
 import UIKit
 import MaterialMotionRuntime
-import MaterialMotionPopFamily
+import MaterialMotionPop
 
 /** A demonstration of how to commit a SpringTo plan to a layer using a Material Motion runtime. */
 class TapToFollowExampleViewController: UIViewController, RuntimeDelegate {
@@ -41,8 +41,8 @@ class TapToFollowExampleViewController: UIViewController, RuntimeDelegate {
     let location = gestureRecognizer.location(in: view)
     let springPosition = SpringTo(.layerPosition, destination: location)
 
-    let configuration = SpringConfiguration(tension: SpringTo.defaultTension,
-                                            friction: sqrt(4 * SpringTo.defaultTension) * 0.5)
+    let configuration = SpringTo.defaultConfiguration
+    configuration.friction = sqrt(4 * configuration.tension) * 0.5
     springPosition.configuration = configuration
 
     // The runtime will create an entity capable of adding POP animations to layers.

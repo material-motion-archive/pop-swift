@@ -17,7 +17,7 @@
 #import <XCTest/XCTest.h>
 
 @import MaterialMotionRuntime;
-@import MaterialMotionPopFamily;
+@import MaterialMotionPop;
 
 @interface ObjectiveCAPITests : XCTestCase
 @end
@@ -41,6 +41,15 @@
                                                                                  friction:friction];
   XCTAssertEqual(configuration.tension, tension);
   XCTAssertEqual(configuration.friction, friction);
+}
+
+- (void)testPauseSpringAPI {
+  MDMPOPProperty property = MDMPOPPropertyViewSize;
+  UIGestureRecognizer *gestureRecognizer = [UIGestureRecognizer new];
+  MDMPauseSpring *pauseSpring = [[MDMPauseSpring alloc] initWithProperty:property
+                                                       gestureRecognizer:gestureRecognizer];
+  XCTAssertEqual(pauseSpring.property, property);
+  XCTAssertEqual(pauseSpring.gestureRecognizer, gestureRecognizer);
 }
 
 @end

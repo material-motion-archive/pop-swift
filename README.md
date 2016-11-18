@@ -1,11 +1,11 @@
-# POP Material Motion Family written in Swift
+# POP for Material Motion (Swift)
 
-[![Build Status](https://travis-ci.org/material-motion/material-motion-family-pop-swift.svg?branch=develop)](https://travis-ci.org/material-motion/material-motion-family-pop-swift)
-[![codecov](https://codecov.io/gh/material-motion/material-motion-family-pop-swift/branch/develop/graph/badge.svg)](https://codecov.io/gh/material-motion/material-motion-family-pop-swift)
+[![Build Status](https://travis-ci.org/material-motion/pop-swift.svg?branch=develop)](https://travis-ci.org/material-motion/pop-swift)
+[![codecov](https://codecov.io/gh/material-motion/pop-swift/branch/develop/graph/badge.svg)](https://codecov.io/gh/material-motion/pop-swift)
 
 The POP Material Motion family provides a bridge between
 [Facebook's POP library](https://github.com/facebook/pop) and the
-[Material Motion runtime](https://github.com/material-motion/material-motion-runtime-objc).
+[Material Motion runtime](https://github.com/material-motion/runtime-objc).
 
 ## Supported languages
 
@@ -27,7 +27,7 @@ scheduler.addPlan(springTo, to: view.layer)
 
 SpringTo supports the properties included in the POPProperty enum. Unlike POP, SpringTo does not
 presently support custom key paths.
-[Read the feature request](https://github.com/material-motion/material-motion-family-pop-swift/issues/19)
+[Read the feature request](https://github.com/material-motion/pop-swift/issues/19)
 for supporting custom key paths.
 
 ## Installation
@@ -41,9 +41,9 @@ for supporting custom key paths.
 >
 >     gem install cocoapods
 
-Add `MaterialMotionPopFamily` to your `Podfile`:
+Add `MaterialMotionPop` to your `Podfile`:
 
-    pod 'MaterialMotionPopFamily'
+    pod 'MaterialMotionPop'
 
 Then run the following command:
 
@@ -53,7 +53,7 @@ Then run the following command:
 
 Import the framework:
 
-    @import MaterialMotionPopFamily;
+    @import MaterialMotionPop;
 
 You will now have access to all of the APIs.
 
@@ -62,10 +62,10 @@ You will now have access to all of the APIs.
 Check out a local copy of the repo to access the Catalog application by running the following
 commands:
 
-    git clone https://github.com/material-motion/material-motion-family-pop-swift.git
-    cd material-motion-family-pop-swift
+    git clone https://github.com/material-motion/pop-swift.git
+    cd pop-swift
     pod install
-    open MaterialMotionPopFamily.xcworkspace
+    open MaterialMotionPop.xcworkspace
 
 ## Guides
 
@@ -115,11 +115,11 @@ springTo.configuration = SpringConfiguration(tension: <#tension#>, friction: <#f
 
 We welcome contributions!
 
-Check out our [upcoming milestones](https://github.com/material-motion/material-motion-family-pop-swift/milestones).
+Check out our [upcoming milestones](https://github.com/material-motion/pop-swift/milestones).
 
-Learn more about [our team](https://material-motion.gitbooks.io/material-motion-team/content/),
-[our community](https://material-motion.gitbooks.io/material-motion-team/content/community/), and
-our [contributor essentials](https://material-motion.gitbooks.io/material-motion-team/content/essentials/).
+Learn more about [our team](https://material-motion.github.io/material-motion/team/),
+[our community](https://material-motion.github.io/material-motion/team/community/), and
+our [contributor essentials](https://material-motion.github.io/material-motion/team/essentials/).
 
 ## License
 
