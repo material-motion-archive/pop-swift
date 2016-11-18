@@ -30,23 +30,23 @@ class SpringPropertyTests: XCTestCase {
     delegate.didIdleExpectation = expectation(description: "Did idle")
     runtime.delegate = delegate
 
-    let map: [(POPProperty, Any, String)] = [
-      (.layerBackgroundColor, UIColor.red.cgColor, "backgroundColor"),
-      (.layerBounds, CGRect(origin: .zero, size: CGSize(width: 1, height: 1)), "bounds"),
-      (.layerCornerRadius, 1, "cornerRadius"),
-      (.layerBorderWidth, 1, "borderWidth"),
-      (.layerBorderColor, UIColor.red.cgColor, "borderColor"),
-      (.layerOpacity, 0.9, "opacity"),
-      (.layerPosition, CGPoint(x: 1, y: 1), "position"),
-      (.layerRotation, 0.1, "transform.rotation"),
-      (.layerZPosition, 1, "zPosition"),
-      (.layerShadowColor, UIColor.red.cgColor, "shadowColor"),
-      (.layerShadowOffset, CGPoint(x: 0.1, y: 0.1), "shadowOffset"),
-      (.layerShadowOpacity, 0.9, "shadowOpacity"),
-      (.layerShadowRadius, 1, "shadowRadius")
+    let map: [(String, Any)] = [
+      ("backgroundColor", UIColor.red.cgColor),
+      ("bounds", CGRect(origin: .zero, size: CGSize(width: 1, height: 1))),
+      ("cornerRadius", 1),
+      ("borderWidth", 1),
+      ("borderColor", UIColor.red.cgColor),
+      ("opacity", 0.9),
+      ("position", CGPoint(x: 1, y: 1)),
+      ("transform.rotation.z", 0.1),
+      ("zPosition", 1),
+      ("shadowColor", UIColor.red.cgColor),
+      ("shadowOffset", CGPoint(x: 0.1, y: 0.1)),
+      ("shadowOpacity", 0.9),
+      ("shadowRadius", 1)
     ]
 
-    for (property, destination, _) in map {
+    for (property, destination) in map {
       let animation = SpringTo(property, destination: destination)
       runtime.addPlan(animation, to: layer)
     }
@@ -54,7 +54,7 @@ class SpringPropertyTests: XCTestCase {
     waitForExpectations(timeout: 10)
     XCTAssertEqual(runtime.activityState, .idle)
 
-    for (_, destination, keyPath) in map {
+    for (keyPath, destination) in map {
       let finalValue = layer.value(forKeyPath: keyPath)!
       switch destination {
       case let value as Float:

@@ -26,7 +26,7 @@ import MaterialMotionRuntime
 public final class SpringTo: NSObject, Plan {
 
   /** The property whose value should be pulled towards the destination. */
-  public var property: POPProperty
+  public var property: String
 
   /** The value to which the property should be pulled. */
   public var destination: Any
@@ -52,7 +52,7 @@ public final class SpringTo: NSObject, Plan {
 
   /** Initialize a SpringTo plan with a property and destination. */
   @objc(initWithProperty:destination:)
-  public init(_ property: POPProperty, destination: Any) {
+  public init(_ property: String, destination: Any) {
     self.property = property
     self.destination = coerce(value: destination)
   }
@@ -117,69 +117,4 @@ public final class SpringConfiguration: NSObject, NSCopying {
   public func copy(with zone: NSZone? = nil) -> Any {
     return SpringConfiguration(tension: tension, friction: friction)
   }
-}
-
-/** The animatable properties for use with the SpringTo plan. */
-@objc(MDMPOPProperty)
-public enum POPProperty: Int {
-  case layerBackgroundColor
-  case layerBounds
-  case layerCornerRadius
-  case layerBorderWidth
-  case layerBorderColor
-  case layerOpacity
-  case layerPosition
-  case layerPositionX
-  case layerPositionY
-  case layerRotation
-  case layerRotationX
-  case layerRotationY
-  case layerScaleX
-  case layerScaleXY
-  case layerScaleY
-  case layerSize
-  case layerSubscaleXY
-  case layerSubtranslationX
-  case layerSubtranslationXY
-  case layerSubtranslationY
-  case layerSubtranslationZ
-  case layerTranslationX
-  case layerTranslationXY
-  case layerTranslationY
-  case layerTranslationZ
-  case layerZPosition
-  case layerShadowColor
-  case layerShadowOffset
-  case layerShadowOpacity
-  case layerShadowRadius
-
-  case shapeLayerStrokeStart
-  case shapeLayerStrokeEnd
-  case shapeLayerStrokeColor
-  case shapeLayerFillColor
-  case shapeLayerLineWidth
-  case shapeLayerLineDashPhase
-
-  case layoutConstraintConstant
-
-  case viewAlpha
-  case viewBackgroundColor
-  case viewBounds
-  case viewCenter
-  case viewFrame
-  case viewScaleX
-  case viewScaleXY
-  case viewScaleY
-  case viewSize
-  case viewTintColor
-
-  case scrollViewContentOffset
-  case scrollViewContentSize
-  case scrollViewZoomScale
-  case scrollViewContentInset
-  case scrollViewScrollIndicatorInsets
-
-  case navigationBarBarTintColor
-
-  case labelTextColor
 }

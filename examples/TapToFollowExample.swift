@@ -39,7 +39,7 @@ class TapToFollowExampleViewController: UIViewController, RuntimeDelegate {
 
   func handleTap(gestureRecognizer: UITapGestureRecognizer) {
     let location = gestureRecognizer.location(in: view)
-    let springPosition = SpringTo(.layerPosition, destination: location)
+    let springPosition = SpringTo("position", destination: location)
 
     let configuration = SpringTo.defaultConfiguration
     configuration.friction = sqrt(4 * configuration.tension) * 0.5

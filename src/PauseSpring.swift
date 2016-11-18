@@ -21,14 +21,14 @@ import MaterialMotionRuntime
 public final class PauseSpring: NSObject, Plan {
 
   /** The property whose springs should be paused while the gesture recognizer is active. */
-  public var property: POPProperty
+  public var property: String
 
   /** The gesture recognizer to observe. */
   public var gestureRecognizer: UIGestureRecognizer
 
   /** Initialize a PauseSpring plan with a property and gesture recognizer. */
   @objc(initWithProperty:gestureRecognizer:)
-  public init(_ property: POPProperty, whileActive gestureRecognizer: UIGestureRecognizer) {
+  public init(_ property: String, whileActive gestureRecognizer: UIGestureRecognizer) {
     self.property = property
     self.gestureRecognizer = gestureRecognizer
     super.init()
