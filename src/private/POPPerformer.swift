@@ -130,8 +130,8 @@ class POPPerformer: NSObject, ContinuousPerforming {
     assert(propertyName != nil, "\(property) is an unsupported property with POP springs")
     let springAnimation = POPSpringAnimation(propertyNamed: propertyName)!
     let spring = Spring(animation: springAnimation)
-    springAnimation.dynamicsTension = SpringTo.defaultTension
-    springAnimation.dynamicsFriction = SpringTo.defaultFriction
+    springAnimation.dynamicsTension = SpringTo.defaultConfiguration.tension
+    springAnimation.dynamicsFriction = SpringTo.defaultConfiguration.friction
     springAnimation.delegate = self
     springAnimation.removedOnCompletion = false
 

@@ -67,22 +67,6 @@ public final class SpringTo: NSObject, Plan {
     springTo.configuration = (configuration.copy() as! SpringConfiguration)
     return springTo
   }
-
-  /**
-   The default tension.
-
-   Default extracted from a POP spring with speed = 12 and bounciness = 4.
-   */
-  @available(*, deprecated, message: "Use defaultConfiguration instead. Deprecated in v1.2.0.")
-  public static let defaultTension: CGFloat = 342
-
-  /**
-   The default friction.
-
-   Default extracted from a POP spring with speed = 12 and bounciness = 4.
-   */
-  @available(*, deprecated, message: "Use defaultConfiguration instead. Deprecated in v1.2.0.")
-  public static let defaultFriction: CGFloat = 30
 }
 
 /**
