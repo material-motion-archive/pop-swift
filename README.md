@@ -146,6 +146,7 @@ commands:
 
 1. [How to animate a property with a SpringTo plan](#how-to-animate-a-property-with-a-springto-plan)
 2. [How to configure spring behavior](#how-to-configure-spring-behavior)
+3. [How to pause a spring while a gesture recognizer is active](#how-to-pause-a-spring-while-a-gesture-recognizer-is-active)
 
 ### How to animate a property with a SpringTo plan
 
@@ -184,6 +185,25 @@ springTo.configuration = [[MDMSpringConfiguration alloc] initWithTension:<#tensi
 
 ```swift
 springTo.configuration = SpringConfiguration(tension: <#tension#>, friction: <#friction#>)
+```
+
+### How to pause a spring while a gesture recognizer is active
+
+Code snippets:
+
+***In Objective-C:***
+
+```objc
+MDMPauseSpring *pauseSpring = [[MDMPauseSpring alloc] initWithProperty:"<#property key path#>"
+                                                     gestureRecognizer:<#gesture recognizer#>];
+[scheduler addPlan:springTo to:<#Object#>];
+```
+
+***In Swift:***
+
+```swift
+let springTo = MDMPauseSpring("<#property key path#>", whileActive: <#gesture recognizer#>)
+scheduler.addPlan(springTo, to: <#Object#>)
 ```
 
 ## Contributing
