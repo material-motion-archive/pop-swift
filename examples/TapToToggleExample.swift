@@ -111,10 +111,10 @@ private class SpringDiameterPerformer: NSObject, ComposablePerforming {
   func addPlan(_ plan: Plan) {
     let diameterChange = plan as! SpringDiameter
 
-    emitter.emitPlan(SpringTo(.layerBounds, destination: CGRect(x: 0, y: 0,
-                                                                width: diameterChange.diameter,
-                                                                height: diameterChange.diameter)))
-    emitter.emitPlan(SpringTo(.layerCornerRadius, destination: diameterChange.diameter / 2))
+    emitter.emitPlan(SpringTo("bounds", destination: CGRect(x: 0, y: 0,
+                                                            width: diameterChange.diameter,
+                                                            height: diameterChange.diameter)))
+    emitter.emitPlan(SpringTo("cornerRadius", destination: diameterChange.diameter / 2))
   }
 
   var emitter: PlanEmitting!

@@ -26,7 +26,7 @@
 @implementation ObjectiveCAPITests
 
 - (void)testSpringToAPI {
-  MDMPOPProperty property = MDMPOPPropertyViewSize;
+  NSString *property = @"bounds.size";
   id destination = [NSValue valueWithCGSize:CGSizeMake(10, 10)];
   MDMSpringTo *springTo = [[MDMSpringTo alloc] initWithProperty:property
                                                     destination:destination];
@@ -44,7 +44,7 @@
 }
 
 - (void)testPauseSpringAPI {
-  MDMPOPProperty property = MDMPOPPropertyViewSize;
+  NSString *property = @"bounds.size";
   UIGestureRecognizer *gestureRecognizer = [UIGestureRecognizer new];
   MDMPauseSpring *pauseSpring = [[MDMPauseSpring alloc] initWithProperty:property
                                                        gestureRecognizer:gestureRecognizer];

@@ -21,7 +21,7 @@ import MaterialMotionPop
 class SpringToTests: XCTestCase {
 
   func testDidPerformAndIdleOnLayer() {
-    let animation = SpringTo(.layerOpacity, destination: 1)
+    let animation = SpringTo("opacity", destination: 0.2)
 
     let layer = CALayer()
 
@@ -33,12 +33,12 @@ class SpringToTests: XCTestCase {
 
     runtime.addPlan(animation, to: layer)
 
-    waitForExpectations(timeout: 0.3)
+    waitForExpectations(timeout: 1)
     XCTAssertEqual(runtime.activityState, .idle)
   }
 
   func testDidChangeToValue() {
-    let animation = SpringTo(.layerOpacity, destination: 1)
+    let animation = SpringTo("opacity", destination: 1)
 
     let layer = CALayer()
 
@@ -78,9 +78,8 @@ class SpringToTests: XCTestCase {
     let delegate = TestableRuntimeDelegate()
     runtime.delegate = delegate
 
-    let springTo = SpringTo(.layerPosition, destination: CGPoint(x: 10, y: 10))
-    springTo.configuration = SpringConfiguration(tension: SpringTo.defaultTension,
-                                                 friction: sqrt(4 * SpringTo.defaultTension) * 0.7)
+    let springTo = SpringTo("position", destination: CGPoint(x: 10, y: 10))
+    springTo.configuration.friction = sqrt(4 * springTo.configuration.tension) * 0.7
     runtime.addPlan(springTo, to: layer)
 
     delegate.didIdleExpectation = expectation(description: "Did idle")
@@ -98,8 +97,7 @@ class SpringToTests: XCTestCase {
     layer.position = .zero
     layer.values.removeAll()
 
-    springTo.configuration = SpringConfiguration(tension: SpringTo.defaultTension,
-                                                 friction: sqrt(4 * SpringTo.defaultTension) * 1.0)
+    springTo.configuration.friction = sqrt(4 * springTo.configuration.tension) * 1.0
     runtime.addPlan(springTo, to: layer)
 
     delegate.activityStateDidChange = false

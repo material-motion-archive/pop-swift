@@ -56,7 +56,7 @@ class POPPerformer: NSObject, ContinuousPerforming {
 
   // MARK: PauseSpring
 
-  var gestureRecognizerToProperties: [UIGestureRecognizer: [POPProperty]] = [:]
+  var gestureRecognizerToProperties: [UIGestureRecognizer: [String]] = [:]
   private func addPauseSpring(_ pauseSpring: PauseSpring) {
     pauseSpring.gestureRecognizer.addTarget(self, action: #selector(gestureDidUpdate))
 
@@ -120,16 +120,18 @@ class POPPerformer: NSObject, ContinuousPerforming {
 
   // MARK: Internal state
 
-  var springs: [POPProperty: Spring] = [:]
-  private func springForProperty(_ property: POPProperty) -> Spring {
+  var springs: [String: Spring] = [:]
+  private func springForProperty(_ property: String) -> Spring {
     if let spring = springs[property] {
       return spring
     }
 
-    let springAnimation = POPSpringAnimation(propertyNamed: property.name())!
+    let propertyName = popPropertyNameForProperty(property)
+    assert(propertyName != nil, "\(property) is an unsupported property with POP springs")
+    let springAnimation = POPSpringAnimation(propertyNamed: propertyName)!
     let spring = Spring(animation: springAnimation)
-    springAnimation.dynamicsTension = SpringTo.defaultTension
-    springAnimation.dynamicsFriction = SpringTo.defaultFriction
+    springAnimation.dynamicsTension = SpringTo.defaultConfiguration.tension
+    springAnimation.dynamicsFriction = SpringTo.defaultConfiguration.friction
     springAnimation.delegate = self
     springAnimation.removedOnCompletion = false
 
@@ -138,6 +140,33 @@ class POPPerformer: NSObject, ContinuousPerforming {
     target.pop_add(springAnimation, forKey: spring.key)
 
     return spring
+  }
+
+  // Type-safe conversion of key path to POP animation property. POP has different readers/writers
+  // for similar-looking key paths depending on the target type, so we handle that mapping here.
+  private func popPropertyNameForProperty(_ property: String) -> String? {
+    if target is CAShapeLayer, let name = CAShapeLayerProperties[property] {
+      return name
+    }
+    if target is CALayer, let name = CALayerProperties[property] {
+      return name
+    }
+    if target is NSLayoutConstraint, let name = NSLayoutConstraintProperties[property] {
+      return name
+    }
+    if target is UIView, let name = UIViewProperties[property] {
+      return name
+    }
+    if target is UIScrollView, let name = UIScrollViewProperties[property] {
+      return name
+    }
+    if target is UINavigationBar, let name = UINavigationBarProperties[property] {
+      return name
+    }
+    if target is UILabel, let name = UILabelProperties[property] {
+      return name
+    }
+    return nil
   }
 
   // MARK: Performer specialization
@@ -183,63 +212,77 @@ func coerce(value: Any) -> Any {
   }
 }
 
-extension POPProperty {
-  func name() -> String {
-    switch self {
-    case .layerBackgroundColor: return kPOPLayerBackgroundColor
-    case .layerBounds: return kPOPLayerBounds
-    case .layerCornerRadius: return kPOPLayerCornerRadius
-    case .layerBorderWidth: return kPOPLayerBorderWidth
-    case .layerBorderColor: return kPOPLayerBorderColor
-    case .layerOpacity: return kPOPLayerOpacity
-    case .layerPosition: return kPOPLayerPosition
-    case .layerPositionX: return kPOPLayerPositionX
-    case .layerPositionY: return kPOPLayerPositionY
-    case .layerRotation: return kPOPLayerRotation
-    case .layerRotationX: return kPOPLayerRotationX
-    case .layerRotationY: return kPOPLayerRotationY
-    case .layerScaleX: return kPOPLayerScaleX
-    case .layerScaleXY: return kPOPLayerScaleXY
-    case .layerScaleY: return kPOPLayerScaleY
-    case .layerSize: return kPOPLayerSize
-    case .layerSubscaleXY: return kPOPLayerSubscaleXY
-    case .layerSubtranslationX: return kPOPLayerSubtranslationX
-    case .layerSubtranslationXY: return kPOPLayerSubtranslationXY
-    case .layerSubtranslationY: return kPOPLayerSubtranslationY
-    case .layerSubtranslationZ: return kPOPLayerSubtranslationZ
-    case .layerTranslationX: return kPOPLayerTranslationX
-    case .layerTranslationXY: return kPOPLayerTranslationXY
-    case .layerTranslationY: return kPOPLayerTranslationY
-    case .layerTranslationZ: return kPOPLayerTranslationZ
-    case .layerZPosition: return kPOPLayerZPosition
-    case .layerShadowColor: return kPOPLayerShadowColor
-    case .layerShadowOffset: return kPOPLayerShadowOffset
-    case .layerShadowOpacity: return kPOPLayerShadowOpacity
-    case .layerShadowRadius: return kPOPLayerShadowRadius
-    case .shapeLayerStrokeStart: return kPOPShapeLayerStrokeStart
-    case .shapeLayerStrokeEnd: return kPOPShapeLayerStrokeEnd
-    case .shapeLayerStrokeColor: return kPOPShapeLayerStrokeColor
-    case .shapeLayerFillColor: return kPOPShapeLayerFillColor
-    case .shapeLayerLineWidth: return kPOPShapeLayerLineWidth
-    case .shapeLayerLineDashPhase: return kPOPShapeLayerLineDashPhase
-    case .layoutConstraintConstant: return kPOPLayoutConstraintConstant
-    case .viewAlpha: return kPOPViewAlpha
-    case .viewBackgroundColor: return kPOPViewBackgroundColor
-    case .viewBounds: return kPOPLayerBounds
-    case .viewCenter: return kPOPViewCenter
-    case .viewFrame: return kPOPViewFrame
-    case .viewScaleX: return kPOPViewScaleX
-    case .viewScaleXY: return kPOPViewScaleXY
-    case .viewScaleY: return kPOPViewScaleY
-    case .viewSize: return kPOPLayerSize
-    case .viewTintColor: return kPOPViewTintColor
-    case .scrollViewContentOffset: return kPOPScrollViewContentOffset
-    case .scrollViewContentSize: return kPOPScrollViewContentSize
-    case .scrollViewZoomScale: return kPOPScrollViewZoomScale
-    case .scrollViewContentInset: return kPOPScrollViewContentInset
-    case .scrollViewScrollIndicatorInsets: return kPOPScrollViewScrollIndicatorInsets
-    case .navigationBarBarTintColor: return kPOPNavigationBarBarTintColor
-    case .labelTextColor: return kPOPLabelTextColor
-    }
-  }
-}
+let CALayerProperties = [
+  NSStringFromSelector(#selector(getter: CALayer.backgroundColor)): kPOPLayerBackgroundColor,
+  NSStringFromSelector(#selector(getter: CALayer.bounds)): kPOPLayerBounds,
+  NSStringFromSelector(#selector(getter: CALayer.cornerRadius)): kPOPLayerCornerRadius,
+  NSStringFromSelector(#selector(getter: CALayer.borderWidth)): kPOPLayerBorderWidth,
+  NSStringFromSelector(#selector(getter: CALayer.borderColor)): kPOPLayerBorderColor,
+  NSStringFromSelector(#selector(getter: CALayer.opacity)): kPOPLayerOpacity,
+  NSStringFromSelector(#selector(getter: CALayer.position)): kPOPLayerPosition,
+  NSStringFromSelector(#selector(getter: CALayer.position)) + ".x": kPOPLayerPositionX,
+  NSStringFromSelector(#selector(getter: CALayer.position)) + ".y": kPOPLayerPositionY,
+  NSStringFromSelector(#selector(getter: CALayer.transform)) + ".rotation.z": kPOPLayerRotation,
+  NSStringFromSelector(#selector(getter: CALayer.transform)) + ".rotation.x": kPOPLayerRotationX,
+  NSStringFromSelector(#selector(getter: CALayer.transform)) + ".rotation.y": kPOPLayerRotationY,
+  NSStringFromSelector(#selector(getter: CALayer.transform)) + ".scale.x": kPOPLayerScaleX,
+  NSStringFromSelector(#selector(getter: CALayer.transform)) + ".scale": kPOPLayerScaleXY,
+  NSStringFromSelector(#selector(getter: CALayer.transform)) + ".scale.y": kPOPLayerScaleY,
+  NSStringFromSelector(#selector(getter: CALayer.bounds)) + ".size": kPOPLayerSize,
+  NSStringFromSelector(#selector(getter: CALayer.sublayerTransform)) + ".scale": kPOPLayerSubscaleXY,
+  NSStringFromSelector(#selector(getter: CALayer.sublayerTransform)) + ".translation.x": kPOPLayerSubtranslationX,
+  NSStringFromSelector(#selector(getter: CALayer.sublayerTransform)) + ".translation": kPOPLayerSubtranslationXY,
+  NSStringFromSelector(#selector(getter: CALayer.sublayerTransform)) + ".translation.y": kPOPLayerSubtranslationY,
+  NSStringFromSelector(#selector(getter: CALayer.sublayerTransform)) + ".translation.z": kPOPLayerSubtranslationZ,
+  NSStringFromSelector(#selector(getter: CALayer.transform)) + ".translation.x": kPOPLayerTranslationX,
+  NSStringFromSelector(#selector(getter: CALayer.transform)) + ".translation": kPOPLayerTranslationXY,
+  NSStringFromSelector(#selector(getter: CALayer.transform)) + ".translation.y": kPOPLayerTranslationY,
+  NSStringFromSelector(#selector(getter: CALayer.transform)) + ".translation.z": kPOPLayerTranslationZ,
+  NSStringFromSelector(#selector(getter: CALayer.zPosition)): kPOPLayerZPosition,
+  NSStringFromSelector(#selector(getter: CALayer.shadowColor)): kPOPLayerShadowColor,
+  NSStringFromSelector(#selector(getter: CALayer.shadowOffset)): kPOPLayerShadowOffset,
+  NSStringFromSelector(#selector(getter: CALayer.shadowOpacity)): kPOPLayerShadowOpacity,
+  NSStringFromSelector(#selector(getter: CALayer.shadowRadius)): kPOPLayerShadowRadius
+]
+
+let CAShapeLayerProperties = [
+  NSStringFromSelector(#selector(getter: CAShapeLayer.strokeStart)): kPOPShapeLayerStrokeStart,
+  NSStringFromSelector(#selector(getter: CAShapeLayer.strokeEnd)): kPOPShapeLayerStrokeEnd,
+  NSStringFromSelector(#selector(getter: CAShapeLayer.strokeColor)): kPOPShapeLayerStrokeColor,
+  NSStringFromSelector(#selector(getter: CAShapeLayer.fillColor)): kPOPShapeLayerFillColor,
+  NSStringFromSelector(#selector(getter: CAShapeLayer.lineWidth)): kPOPShapeLayerLineWidth,
+  NSStringFromSelector(#selector(getter: CAShapeLayer.lineDashPhase)): kPOPShapeLayerLineDashPhase,
+]
+
+let NSLayoutConstraintProperties = [
+  NSStringFromSelector(#selector(getter: NSLayoutConstraint.constant)): kPOPLayoutConstraintConstant
+]
+
+let UIViewProperties = [
+  NSStringFromSelector(#selector(getter: UIView.alpha)): kPOPViewAlpha,
+  NSStringFromSelector(#selector(getter: UIView.backgroundColor)): kPOPViewBackgroundColor,
+  NSStringFromSelector(#selector(getter: UIView.bounds)): kPOPViewBounds,
+  NSStringFromSelector(#selector(getter: UIView.center)): kPOPViewCenter,
+  NSStringFromSelector(#selector(getter: UIView.frame)): kPOPViewFrame,
+  NSStringFromSelector(#selector(getter: UIView.transform)) + ".scale.x": kPOPViewScaleX,
+  NSStringFromSelector(#selector(getter: UIView.transform)) + ".scale": kPOPViewScaleXY,
+  NSStringFromSelector(#selector(getter: UIView.transform)) + ".scale.y": kPOPViewScaleY,
+  NSStringFromSelector(#selector(getter: UIView.bounds)) + ".size": kPOPViewSize,
+  NSStringFromSelector(#selector(getter: UIView.tintColor)): kPOPViewTintColor,
+]
+
+let UIScrollViewProperties = [
+  NSStringFromSelector(#selector(getter: UIScrollView.contentOffset)): kPOPScrollViewContentOffset,
+  NSStringFromSelector(#selector(getter: UIScrollView.contentSize)): kPOPScrollViewContentSize,
+  NSStringFromSelector(#selector(getter: UIScrollView.zoomScale)): kPOPScrollViewZoomScale,
+  NSStringFromSelector(#selector(getter: UIScrollView.contentInset)): kPOPScrollViewContentInset,
+  NSStringFromSelector(#selector(getter: UIScrollView.scrollIndicatorInsets)): kPOPScrollViewScrollIndicatorInsets,
+]
+
+let UINavigationBarProperties = [
+  NSStringFromSelector(#selector(getter: UINavigationBar.barTintColor)): kPOPNavigationBarBarTintColor,
+]
+
+let UILabelProperties = [
+  NSStringFromSelector(#selector(getter: UILabel.textColor)): kPOPLabelTextColor
+]
