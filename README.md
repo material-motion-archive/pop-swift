@@ -21,14 +21,89 @@ For example, you might use a SpringTo plan to move a view's position to a specif
 screen:
 
 ```swift
-let springTo = SpringTo(.layerPosition destination: CGPoint(x: 10, y: 10))
+let springTo = SpringTo("position", destination: CGPoint(x: 10, y: 10))
 scheduler.addPlan(springTo, to: view.layer)
 ```
 
-SpringTo supports the properties included in the POPProperty enum. Unlike POP, SpringTo does not
-presently support custom key paths.
+SpringTo supports a subset of key paths on certain types:
+
+**CALayer**
+
+- `backgroundColor`
+- `bounds`
+- `cornerRadius`
+- `borderWidth`
+- `borderColor`
+- `opacity`
+- `position`
+- `position.x`
+- `position.y`
+- `transform.rotation.z`
+- `transform.rotation.x`
+- `transform.rotation.y`
+- `transform.scale.x`
+- `transform.scale`
+- `transform.scale.y`
+- `bounds.size`
+- `sublayerTransform.scale`
+- `sublayerTransform.translation.x`
+- `sublayerTransform.translation`
+- `sublayerTransform.translation.y`
+- `sublayerTransform.translation.z`
+- `transform.translation.x`
+- `transform.translation`
+- `transform.translation.y`
+- `transform.translation.z`
+- `zPosition`
+- `shadowColor`
+- `shadowOffset`
+- `shadowOpacity`
+- `shadowRadius`
+
+**CAShapeLayer**
+
+- `strokeStart`
+- `strokeEnd`
+- `strokeColor`
+- `fillColor`
+- `lineWidth`
+- `lineDashPhase`
+
+**NSLayoutConstraint**
+
+- `constant`
+
+**UIView**
+
+- `alpha`
+- `backgroundColor`
+- `bounds`
+- `center`
+- `frame`
+- `transform.scale.x`
+- `transform.scale`
+- `transform.scale.y`
+- `bounds.size`
+- `tintColor`
+
+**UIScrollView**
+
+- `contentOffset`
+- `contentSize`
+- `zoomScale`
+- `contentInset`
+- `scrollIndicatorInsets`
+
+**UINavigationBar**
+
+- `barTintColor`
+
+**UILabel**
+
+- `textColor`
+
 [Read the feature request](https://github.com/material-motion/pop-swift/issues/19)
-for supporting custom key paths.
+for supporting more key paths.
 
 ## Installation
 
@@ -79,7 +154,7 @@ Code snippets:
 ***In Objective-C:***
 
 ```objc
-MDMSpringTo *springTo = [[MDMSpringTo alloc] initWithProperty:MDMPOPProperty<#property name#>
+MDMSpringTo *springTo = [[MDMSpringTo alloc] initWithProperty:"<#property key path#>"
                                                   destination:<#Destination value#>];
 [scheduler addPlan:springTo to:<#Object#>];
 ```
@@ -87,7 +162,7 @@ MDMSpringTo *springTo = [[MDMSpringTo alloc] initWithProperty:MDMPOPProperty<#pr
 ***In Swift:***
 
 ```swift
-let springTo = SpringTo(.<#property name#>, destination: <#Destination value#>)
+let springTo = SpringTo("<#property key path#>", destination: <#Destination value#>)
 scheduler.addPlan(springTo, to: <#Object#>)
 ```
 
