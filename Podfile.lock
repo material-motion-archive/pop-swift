@@ -1,6 +1,6 @@
 PODS:
   - CatalogByConvention (2.0.0)
-  - MaterialMotionPop (1.2.0):
+  - MaterialMotionPop (2.0.0):
     - MaterialMotionRuntime (< 7.0, >= 4.0)
     - pop (~> 1.0)
   - MaterialMotionRuntime (6.0.0)
@@ -18,7 +18,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CatalogByConvention: be55c2263132e4f9f59299ac8a528ee8715b3275
-  MaterialMotionPop: e0bbab3b6c2c7b0083a9a3892e6bddf267f2fb09
+  MaterialMotionPop: b7564c2248cc5639240fc6aea2618252cee5e3fd
   MaterialMotionRuntime: 89cb395df1ce02134fc67a16b42dc4492b6c514c
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
 
