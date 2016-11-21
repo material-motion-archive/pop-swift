@@ -43,13 +43,13 @@
   XCTAssertEqual(configuration.friction, friction);
 }
 
-- (void)testPauseSpringAPI {
+- (void)testPausesSpringAPI {
   NSString *property = @"bounds.size";
   UIGestureRecognizer *gestureRecognizer = [UIGestureRecognizer new];
-  MDMPauseSpring *pauseSpring = [[MDMPauseSpring alloc] initWithProperty:property
-                                                       gestureRecognizer:gestureRecognizer];
-  XCTAssertEqual(pauseSpring.property, property);
-  XCTAssertEqual(pauseSpring.gestureRecognizer, gestureRecognizer);
+  MDMPausesSpring *pausesSpring = [[MDMPausesSpring alloc] initWithProperty:property
+                                                          gestureRecognizer:gestureRecognizer];
+  XCTAssertEqual(pausesSpring.property, property);
+  XCTAssertEqual(pausesSpring.gestureRecognizer, gestureRecognizer);
 }
 
 @end

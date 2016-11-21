@@ -33,8 +33,8 @@ class POPPerformer: NSObject, ContinuousPerforming {
     switch plan {
     case let springTo as SpringTo:
       self.addSpringTo(springTo)
-    case let pauseSpring as PauseSpring:
-      self.addPauseSpring(pauseSpring)
+    case let PausesSpring as PausesSpring:
+      self.addPausesSpring(PausesSpring)
     default:
       assertionFailure("Unknown plan: \(plan)")
     }
@@ -54,16 +54,16 @@ class POPPerformer: NSObject, ContinuousPerforming {
     }
   }
 
-  // MARK: PauseSpring
+  // MARK: PausesSpring
 
   var gestureRecognizerToProperties: [UIGestureRecognizer: [String]] = [:]
-  private func addPauseSpring(_ pauseSpring: PauseSpring) {
-    pauseSpring.gestureRecognizer.addTarget(self, action: #selector(gestureDidUpdate))
+  private func addPausesSpring(_ PausesSpring: PausesSpring) {
+    PausesSpring.gestureRecognizer.addTarget(self, action: #selector(gestureDidUpdate))
 
-    gestureRecognizerToProperties[pauseSpring.gestureRecognizer,
-                                  withDefault: []].append(pauseSpring.property)
+    gestureRecognizerToProperties[PausesSpring.gestureRecognizer,
+                                  withDefault: []].append(PausesSpring.property)
 
-    gestureDidUpdate(pauseSpring.gestureRecognizer)
+    gestureDidUpdate(PausesSpring.gestureRecognizer)
   }
 
   // MARK: Gesture events

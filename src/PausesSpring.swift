@@ -17,8 +17,8 @@
 import MaterialMotionRuntime
 
 /** Pauses a spring simulation while a gesture recognizer is active. */
-@objc(MDMPauseSpring)
-public final class PauseSpring: NSObject, Plan {
+@objc(MDMPausesSpring)
+public class PausesSpring: NSObject, Plan {
 
   /** The property whose springs should be paused while the gesture recognizer is active. */
   public var property: String
@@ -26,7 +26,7 @@ public final class PauseSpring: NSObject, Plan {
   /** The gesture recognizer to observe. */
   public var gestureRecognizer: UIGestureRecognizer
 
-  /** Initialize a PauseSpring plan with a property and gesture recognizer. */
+  /** Initialize a PausesSpring plan with a property and gesture recognizer. */
   @objc(initWithProperty:gestureRecognizer:)
   public init(_ property: String, whileActive gestureRecognizer: UIGestureRecognizer) {
     self.property = property
@@ -41,6 +41,12 @@ public final class PauseSpring: NSObject, Plan {
 
   /** Returns a copy of this plan. */
   public func copy(with zone: NSZone? = nil) -> Any {
-    return PauseSpring(property, whileActive: gestureRecognizer)
+    return PausesSpring(property, whileActive: gestureRecognizer)
   }
+}
+
+/** Deprecated. Use PausesSpring instead. */
+@objc(MDMPauseSpring)
+@available(*, deprecated, message: "Use PausesSpring instead. Deprecated in #nextversion#.")
+public class PauseSpring: PausesSpring {
 }
