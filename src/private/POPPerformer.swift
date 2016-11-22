@@ -35,6 +35,8 @@ class POPPerformer: NSObject, ContinuousPerforming {
       self.addSpringTo(springTo)
     case let pausesSpring as PausesSpring:
       self.addPausesSpring(pausesSpring)
+    case let appliesVelocity as AppliesVelocity:
+      self.addAppliesVelocity(appliesVelocity)
     default:
       assertionFailure("Unknown plan: \(plan)")
     }
@@ -66,8 +68,6 @@ class POPPerformer: NSObject, ContinuousPerforming {
     gestureDidUpdate(pausesSpring.gestureRecognizer)
   }
 
-  // MARK: Gesture events
-
   func gestureDidUpdate(_ gestureRecognizer: UIGestureRecognizer) {
     let gestureIsActive = gestureRecognizer.state == .began || gestureRecognizer.state == .changed
     if gestureIsActive {
@@ -89,16 +89,59 @@ class POPPerformer: NSObject, ContinuousPerforming {
 
       if spring.activeGestureRecognizers.count == 0 {
         spring.animation.fromValue = nil
+        reapplySpring(spring)
+      }
+    }
+  }
 
-        // We create a copy of the animation in order to blow away internal POP state from the old
-        // animation.
-        let copy = spring.animation.copy() as! POPSpringAnimation
-        spring.animation = copy
+  // MARK: AppliesVelocity
 
-        // Eventually terminated by pop_animationDidStop.
-        tokens[copy] = tokenGenerator.generate()!
+  var velocityGestureRecognizerToProperties: [UIGestureRecognizer: [String]] = [:]
+  private func addAppliesVelocity(_ appliesVelocity: AppliesVelocity) {
+    let spring = springForProperty(appliesVelocity.property)
 
-        target.pop_add(spring.animation, forKey: spring.key)
+    appliesVelocity.gestureRecognizer.addTarget(self, action: #selector(velocityGestureDidUpdate))
+
+    velocityGestureRecognizerToProperties[appliesVelocity.gestureRecognizer,
+                                          withDefault: []].append(appliesVelocity.property)
+
+    velocityGestureDidUpdate(appliesVelocity.gestureRecognizer)
+  }
+
+  func velocityGestureDidUpdate(_ gestureRecognizer: UIGestureRecognizer) {
+    if gestureRecognizer.state != .ended {
+      return
+    }
+
+    let velocity: Any?
+    switch gestureRecognizer {
+    case let pan as UIPanGestureRecognizer:
+      velocity = pan.velocity(in: pan.view)
+    case let pinch as UIPinchGestureRecognizer:
+      velocity = pinch.velocity
+    case let rotate as UIRotationGestureRecognizer:
+      velocity = rotate.velocity
+    default:
+      assertionFailure("Unknown gesture recognizer type \(gestureRecognizer).")
+      velocity = nil
+    }
+
+    if let velocity = velocity {
+      for property in velocityGestureRecognizerToProperties[gestureRecognizer]! {
+        guard let spring = springs[property] else {
+          continue
+        }
+        if target is CALayer
+          && gestureRecognizer is UIPinchGestureRecognizer
+          && property == "transform.scale" {
+          // POP expects scale velocity to be a CGSize.
+          spring.animation.velocity = CGSize(width: velocity as! CGFloat,
+                                             height: velocity as! CGFloat)
+        } else {
+          spring.animation.velocity = velocity
+        }
+        spring.animation.fromValue = nil
+        reapplySpring(spring)
       }
     }
   }
@@ -140,6 +183,20 @@ class POPPerformer: NSObject, ContinuousPerforming {
     target.pop_add(springAnimation, forKey: spring.key)
 
     return spring
+  }
+
+  private func reapplySpring(_ spring: Spring) {
+    target.pop_removeAnimation(forKey: spring.key)
+
+    // We create a copy of the animation in order to blow away internal POP state from the old
+    // animation.
+    let copy = spring.animation.copy() as! POPSpringAnimation
+    spring.animation = copy
+
+    // Eventually terminated by pop_animationDidStop.
+    tokens[copy] = tokenGenerator.generate()!
+
+    target.pop_add(spring.animation, forKey: spring.key)
   }
 
   // Type-safe conversion of key path to POP animation property. POP has different readers/writers

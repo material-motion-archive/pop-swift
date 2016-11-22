@@ -17,6 +17,7 @@
 		66A2778B1DA6C6FD00AFA57B /* ObjectiveCAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A2778A1DA6C6FD00AFA57B /* ObjectiveCAPITests.m */; };
 		66A2778F1DAD43E800AFA57B /* TableOfContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A2778E1DAD43E800AFA57B /* TableOfContents.swift */; };
 		66F937341D90747E0085432F /* TestableSchedulerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F937331D90747E0085432F /* TestableSchedulerDelegate.swift */; };
+		66FB04721DE2747F0083C6AD /* TossableExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FB04711DE2747F0083C6AD /* TossableExample.swift */; };
 		A48013354E919E80F92EBDEF /* Pods_MaterialMotionPop_Catalog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B7D6D7F5228B57398B6D84F /* Pods_MaterialMotionPop_Catalog.framework */; };
 		D03A08901D591DFF003C85FE /* SpringToTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A088F1D591DFF003C85FE /* SpringToTests.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,7 @@
 		66A2778A1DA6C6FD00AFA57B /* ObjectiveCAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCAPITests.m; sourceTree = "<group>"; };
 		66A2778E1DAD43E800AFA57B /* TableOfContents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableOfContents.swift; path = Catalog/TableOfContents.swift; sourceTree = "<group>"; };
 		66F937331D90747E0085432F /* TestableSchedulerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableSchedulerDelegate.swift; sourceTree = "<group>"; };
+		66FB04711DE2747F0083C6AD /* TossableExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TossableExample.swift; sourceTree = "<group>"; };
 		79EB017EC08D6BC646141D72 /* Pods-MaterialMotionPop-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialMotionPop-UnitTests.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-MaterialMotionPop-UnitTests/Pods-MaterialMotionPop-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7B7D6D7F5228B57398B6D84F /* Pods_MaterialMotionPop_Catalog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaterialMotionPop_Catalog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B99E69BA6AF4E0129DD29405 /* Pods-MaterialMotionPop-Catalog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialMotionPop-Catalog.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-MaterialMotionPop-Catalog/Pods-MaterialMotionPop-Catalog.debug.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			children = (
 				668484321D8241EC0032CEED /* TapToFollowExample.swift */,
 				668484331D8241EC0032CEED /* TapToToggleExample.swift */,
+				66FB04711DE2747F0083C6AD /* TossableExample.swift */,
 			);
 			name = examples;
 			path = ../..;
@@ -387,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				668484351D8241EC0032CEED /* TapToToggleExample.swift in Sources */,
+				66FB04721DE2747F0083C6AD /* TossableExample.swift in Sources */,
 				666FAA841D384A6B000363DA /* AppDelegate.swift in Sources */,
 				668484341D8241EC0032CEED /* TapToFollowExample.swift in Sources */,
 				66A2778F1DAD43E800AFA57B /* TableOfContents.swift in Sources */,

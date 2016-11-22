@@ -27,3 +27,9 @@ extension TapToToggleExampleViewController {
     return ["Tap to Toggle"]
   }
 }
+
+extension TossableExampleViewController {
+  class func catalogBreadcrumbs() -> [String] {
+    return ["Tossable"]
+  }
+}

@@ -28,10 +28,10 @@
 - (void)testSpringToAPI {
   NSString *property = @"bounds.size";
   id destination = [NSValue valueWithCGSize:CGSizeMake(10, 10)];
-  MDMSpringTo *springTo = [[MDMSpringTo alloc] initWithProperty:property
-                                                    destination:destination];
-  XCTAssertEqual(springTo.property, property);
-  XCTAssertEqual(springTo.destination, destination);
+  MDMSpringTo *plan = [[MDMSpringTo alloc] initWithProperty:property
+                                                destination:destination];
+  XCTAssertEqual(plan.property, property);
+  XCTAssertEqual(plan.destination, destination);
 }
 
 - (void)testSpringConfigurationAPI {
@@ -46,10 +46,19 @@
 - (void)testPausesSpringAPI {
   NSString *property = @"bounds.size";
   UIGestureRecognizer *gestureRecognizer = [UIGestureRecognizer new];
-  MDMPausesSpring *pausesSpring = [[MDMPausesSpring alloc] initWithProperty:property
-                                                          gestureRecognizer:gestureRecognizer];
-  XCTAssertEqual(pausesSpring.property, property);
-  XCTAssertEqual(pausesSpring.gestureRecognizer, gestureRecognizer);
+  MDMPausesSpring *plan = [[MDMPausesSpring alloc] initWithProperty:property
+                                                  gestureRecognizer:gestureRecognizer];
+  XCTAssertEqual(plan.property, property);
+  XCTAssertEqual(plan.gestureRecognizer, gestureRecognizer);
+}
+
+- (void)testAppliesVelocityAPI {
+  NSString *property = @"bounds.size";
+  UIGestureRecognizer *gestureRecognizer = [UIGestureRecognizer new];
+  MDMAppliesVelocity *plan = [[MDMAppliesVelocity alloc] initWithProperty:property
+                                                        gestureRecognizer:gestureRecognizer];
+  XCTAssertEqual(plan.property, property);
+  XCTAssertEqual(plan.gestureRecognizer, gestureRecognizer);
 }
 
 @end
