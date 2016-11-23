@@ -98,8 +98,6 @@ class POPPerformer: NSObject, ContinuousPerforming {
 
   var velocityGestureRecognizerToProperties: [UIGestureRecognizer: [String]] = [:]
   private func addAppliesVelocity(_ appliesVelocity: AppliesVelocity) {
-    let spring = springForProperty(appliesVelocity.property)
-
     appliesVelocity.gestureRecognizer.addTarget(self, action: #selector(velocityGestureDidUpdate))
 
     velocityGestureRecognizerToProperties[appliesVelocity.gestureRecognizer,
