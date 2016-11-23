@@ -18,7 +18,7 @@ import UIKit
 import MaterialMotionRuntime
 import MaterialMotionPop
 
-/** A demonstration of how to commit a SpringTo plan to a layer using a Material Motion runtime. */
+// A demonstration of how to commit a SpringTo plan to a layer using a Material Motion runtime.
 class TapToFollowExampleViewController: UIViewController, RuntimeDelegate {
 
   // We create a single Runtime for the lifetime of this view controller. How many runtimes you

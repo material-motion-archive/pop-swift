@@ -16,19 +16,19 @@
 
 import MaterialMotionRuntime
 
-/** Pauses a spring simulation while a gesture recognizer is active. */
-@objc(MDMPauseSpring)
-public final class PauseSpring: NSObject, Plan {
+/** Extracts velocity from a gesture recognizer and applies it to the spring simulation. */
+@objc(MDMAppliesVelocity)
+public final class AppliesVelocity: NSObject, Plan {
 
-  /** The property whose springs should be paused while the gesture recognizer is active. */
+  /** The property whose spring velocity should be affected. */
   public var property: String
 
   /** The gesture recognizer to observe. */
   public var gestureRecognizer: UIGestureRecognizer
 
-  /** Initialize a PauseSpring plan with a property and gesture recognizer. */
+  /** Initialize a AppliesVelocity plan with a property and gesture recognizer. */
   @objc(initWithProperty:gestureRecognizer:)
-  public init(_ property: String, whileActive gestureRecognizer: UIGestureRecognizer) {
+  public init(_ property: String, onCompletionOf gestureRecognizer: UIGestureRecognizer) {
     self.property = property
     self.gestureRecognizer = gestureRecognizer
     super.init()
@@ -41,6 +41,6 @@ public final class PauseSpring: NSObject, Plan {
 
   /** Returns a copy of this plan. */
   public func copy(with zone: NSZone? = nil) -> Any {
-    return PauseSpring(property, whileActive: gestureRecognizer)
+    return AppliesVelocity(property, onCompletionOf: gestureRecognizer)
   }
 }

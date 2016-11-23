@@ -1,5 +1,5 @@
 module: MaterialMotionPop
-module_version: 2.0.0
+module_version: 2.1.0
 sdk: iphonesimulator
 xcodebuild_arguments:
   - -workspace
@@ -7,4 +7,4 @@ xcodebuild_arguments:
   - -scheme
   - MaterialMotionPop
 github_url: https://github.com/material-motion/pop-swift
-github_file_prefix: https://github.com/material-motion/pop-swift/tree/v2.0.0
+github_file_prefix: https://github.com/material-motion/pop-swift/tree/v2.1.0
