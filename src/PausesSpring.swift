@@ -47,6 +47,6 @@ public class PausesSpring: NSObject, Plan {
 
 /** Deprecated. Use PausesSpring instead. */
 @objc(MDMPauseSpring)
-@available(*, deprecated, message: "Use PausesSpring instead. Deprecated in #nextversion#.")
+@available(*, deprecated, message: "Use PausesSpring instead. Deprecated in 2.1.0.")
 public class PauseSpring: PausesSpring {
 }
