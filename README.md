@@ -2,6 +2,9 @@
 
 [![Build Status](https://travis-ci.org/material-motion/pop-swift.svg?branch=develop)](https://travis-ci.org/material-motion/pop-swift)
 [![codecov](https://codecov.io/gh/material-motion/pop-swift/branch/develop/graph/badge.svg)](https://codecov.io/gh/material-motion/pop-swift)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/MaterialMotionPop.svg)](https://cocoapods.org/pods/MaterialMotionPop)
+[![Platform](https://img.shields.io/cocoapods/p/MaterialMotionPop.svg)](http://cocoadocs.org/docsets/MaterialMotionPop)
+[![Docs](https://img.shields.io/cocoapods/metrics/doc-percent/MaterialMotionPop.svg)](http://cocoadocs.org/docsets/MaterialMotionPop)
 
 The POP Material Motion family provides a bridge between
 [Facebook's POP library](https://github.com/facebook/pop) and the

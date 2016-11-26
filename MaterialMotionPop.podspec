@@ -8,8 +8,22 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/material-motion/pop-swift.git", :tag => "v" + s.version.to_s }
   s.platform     = :ios, "8.0"
   s.requires_arc = true
+  s.default_subspec = "lib"
 
-  s.source_files = "src/*.{swift}", "src/private/*.{swift}"
+  s.subspec "lib" do |ss|
+    ss.source_files = "src/*.{swift}", "src/private/*.{swift}"
+  end
+
+  s.subspec "examples" do |ss|
+    ss.source_files = "examples/*.{swift}", "examples/supplementary/*.{swift}"
+    ss.exclude_files = "examples/TableOfContents.swift"
+    ss.dependency "MaterialMotionPop/lib"
+  end
+
+  s.subspec "tests" do |ss|
+    ss.source_files = "tests/src/*.{swift}", "tests/src/private/*.{swift}"
+    ss.dependency "MaterialMotionPop/lib"
+  end
 
   s.dependency "pop", "~> 1.0"
   s.dependency "MaterialMotionRuntime", ">= 4.0", "< 7.0"
