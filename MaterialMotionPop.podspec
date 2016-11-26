@@ -15,9 +15,12 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "examples" do |ss|
-    ss.source_files = "examples/*.{swift}", "examples/supplementary/*.{swift}"
+    ss.source_files = "examples/*.{swift}", "examples/supplemental/*.{swift}"
     ss.exclude_files = "examples/TableOfContents.swift"
+    ss.resources = "examples/supplemental/*.{xcassets}"
     ss.dependency "MaterialMotionPop/lib"
+
+    ss.dependency "MaterialMotionRuntime", "~> 6.0"
   end
 
   s.subspec "tests" do |ss|

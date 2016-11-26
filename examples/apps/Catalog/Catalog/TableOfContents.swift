@@ -16,6 +16,8 @@
 
 // MARK: Catalog by convention
 
+import MaterialMotionPop
+
 extension TapToFollowExampleViewController {
   class func catalogBreadcrumbs() -> [String] {
     return ["Tap to Follow"]

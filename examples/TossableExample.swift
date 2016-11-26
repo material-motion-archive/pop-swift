@@ -79,7 +79,7 @@ class TossableInteraction {
   }
 }
 
-class TossableExampleViewController: UIViewController, RuntimeDelegate {
+public class TossableExampleViewController: UIViewController, RuntimeDelegate {
 
   // MARK: Configuring views and interactions
 
@@ -87,7 +87,7 @@ class TossableExampleViewController: UIViewController, RuntimeDelegate {
   var circle: CALayer!
   var interaction: TossableInteraction!
 
-  override func viewDidLoad() {
+  override public func viewDidLoad() {
     super.viewDidLoad()
 
     view.backgroundColor = .white
@@ -110,7 +110,7 @@ class TossableExampleViewController: UIViewController, RuntimeDelegate {
     interaction.runtime.delegate = self
   }
 
-  func runtimeActivityStateDidChange(_ runtime: Runtime) {
+  public func runtimeActivityStateDidChange(_ runtime: Runtime) {
     switch runtime.activityState {
     case .active:
       view.backgroundColor = UIColor(red: CGFloat(0xE3) / 255.0,
@@ -125,7 +125,7 @@ class TossableExampleViewController: UIViewController, RuntimeDelegate {
   // MARK: Routing initializers
 
   func commonInit() {
-    title = type(of: self).catalogBreadcrumbs().last
+    title = "Tossable"
   }
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -134,7 +134,7 @@ class TossableExampleViewController: UIViewController, RuntimeDelegate {
     self.commonInit()
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  required public init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
 
     self.commonInit()

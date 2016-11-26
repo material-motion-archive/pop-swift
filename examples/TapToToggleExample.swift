@@ -45,14 +45,14 @@ private class SpringDiameter: NSObject, Plan {
   }
 }
 
-class TapToToggleExampleViewController: UIViewController {
+public class TapToToggleExampleViewController: UIViewController {
 
   let minSize: CGFloat = 100.0
   let maxSize: CGFloat = 280.0
 
   func commonInit() {
     runtime.delegate = self
-    title = type(of: self).catalogBreadcrumbs().last
+    title = "Tap to Toggle"
   }
 
   // MARK: Reacting to user interactions
@@ -85,7 +85,7 @@ class TapToToggleExampleViewController: UIViewController {
     self.commonInit()
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  required public init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
 
     self.commonInit()
@@ -126,7 +126,7 @@ private class SpringDiameterPerformer: NSObject, ComposablePerforming {
 // MARK: Example configuration
 
 extension TapToToggleExampleViewController: RuntimeDelegate {
-  func runtimeActivityStateDidChange(_ runtime: Runtime) {
+  public func runtimeActivityStateDidChange(_ runtime: Runtime) {
     switch runtime.activityState {
     case .active:
       view.backgroundColor = UIColor(red: CGFloat(0xE3) / 255.0,
@@ -140,7 +140,7 @@ extension TapToToggleExampleViewController: RuntimeDelegate {
 }
 
 extension TapToToggleExampleViewController {
-  override func viewDidLoad() {
+  override public func viewDidLoad() {
     super.viewDidLoad()
 
     view.backgroundColor = .white

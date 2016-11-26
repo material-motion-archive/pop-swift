@@ -19,7 +19,7 @@ import MaterialMotionRuntime
 import MaterialMotionPop
 
 // A demonstration of how to commit a SpringTo plan to a layer using a Material Motion runtime.
-class TapToFollowExampleViewController: UIViewController, RuntimeDelegate {
+public class TapToFollowExampleViewController: UIViewController, RuntimeDelegate {
 
   // We create a single Runtime for the lifetime of this view controller. How many runtimes you
   // decide to create is a matter of preference, but generally speaking it's fair to create one
@@ -32,7 +32,7 @@ class TapToFollowExampleViewController: UIViewController, RuntimeDelegate {
     // runtime's delegate.
     runtime.delegate = self
 
-    title = type(of: self).catalogBreadcrumbs().last
+    title = "Tap to Follow"
   }
 
   // MARK: Reacting to user interactions
@@ -49,7 +49,7 @@ class TapToFollowExampleViewController: UIViewController, RuntimeDelegate {
     runtime.addPlan(springPosition, to: circle)
   }
 
-  func runtimeActivityStateDidChange(_ runtime: Runtime) {
+  public func runtimeActivityStateDidChange(_ runtime: Runtime) {
     switch runtime.activityState {
     case .active:
       view.backgroundColor = UIColor(red: CGFloat(0xE3) / 255.0,
@@ -66,7 +66,7 @@ class TapToFollowExampleViewController: UIViewController, RuntimeDelegate {
   // Views
   var circle: CALayer!
 
-  override func viewDidLoad() {
+  override public func viewDidLoad() {
     super.viewDidLoad()
 
     view.backgroundColor = .white
@@ -93,7 +93,7 @@ class TapToFollowExampleViewController: UIViewController, RuntimeDelegate {
     self.commonInit()
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  required public init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
 
     self.commonInit()
