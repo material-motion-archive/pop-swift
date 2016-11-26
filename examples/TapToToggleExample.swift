@@ -72,7 +72,7 @@ public class TapToToggleExampleViewController: UIViewController {
   }
 
   // Material Motion state
-  let runtime = Runtime()
+  let runtime = MotionRuntime()
 
   // Visible entities
   var circle: CALayer!
@@ -125,8 +125,8 @@ private class SpringDiameterPerformer: NSObject, ComposablePerforming {
 
 // MARK: Example configuration
 
-extension TapToToggleExampleViewController: RuntimeDelegate {
-  public func runtimeActivityStateDidChange(_ runtime: Runtime) {
+extension TapToToggleExampleViewController: MotionRuntimeDelegate {
+  public func motionRuntimeActivityStateDidChange(_ runtime: MotionRuntime) {
     switch runtime.activityState {
     case .active:
       view.backgroundColor = UIColor(red: CGFloat(0xE3) / 255.0,

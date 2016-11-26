@@ -25,7 +25,7 @@ class SpringToTests: XCTestCase {
 
     let layer = CALayer()
 
-    let runtime = Runtime()
+    let runtime = MotionRuntime()
     let delegate = TestableRuntimeDelegate()
 
     delegate.didIdleExpectation = expectation(description: "Did idle")
@@ -42,7 +42,7 @@ class SpringToTests: XCTestCase {
 
     let layer = CALayer()
 
-    let runtime = Runtime()
+    let runtime = MotionRuntime()
     let delegate = TestableRuntimeDelegate()
     runtime.delegate = delegate
 
@@ -74,7 +74,7 @@ class SpringToTests: XCTestCase {
   func testNotBouncySpringIsLessBouncy() {
     let layer = PositionTraceLayer()
 
-    let runtime = Runtime()
+    let runtime = MotionRuntime()
     let delegate = TestableRuntimeDelegate()
     runtime.delegate = delegate
 

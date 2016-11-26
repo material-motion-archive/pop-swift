@@ -25,7 +25,7 @@ class SpringPropertyTests: XCTestCase {
   func testLayerProperties() {
     let layer = CALayer()
 
-    let runtime = Runtime()
+    let runtime = MotionRuntime()
     let delegate = TestableRuntimeDelegate()
     delegate.didIdleExpectation = expectation(description: "Did idle")
     runtime.delegate = delegate

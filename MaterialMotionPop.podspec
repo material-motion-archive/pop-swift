@@ -26,6 +26,7 @@ Pod::Spec.new do |s|
   s.subspec "tests" do |ss|
     ss.source_files = "tests/src/*.{swift}", "tests/src/private/*.{swift}"
     ss.dependency "MaterialMotionPop/lib"
+    ss.dependency "MaterialMotionRuntime/tests"
   end
 
   s.dependency "pop", "~> 1.0"

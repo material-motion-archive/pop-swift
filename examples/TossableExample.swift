@@ -23,7 +23,7 @@ import MaterialMotionPop
 // registering all of the relevant plans to a runtime.
 
 class TossableInteraction {
-  let runtime = Runtime()
+  let runtime = MotionRuntime()
 
   let anchoredPosition: CGPoint
   let layer: CALayer
@@ -79,7 +79,7 @@ class TossableInteraction {
   }
 }
 
-public class TossableExampleViewController: UIViewController, RuntimeDelegate {
+public class TossableExampleViewController: UIViewController, MotionRuntimeDelegate {
 
   // MARK: Configuring views and interactions
 
@@ -110,7 +110,7 @@ public class TossableExampleViewController: UIViewController, RuntimeDelegate {
     interaction.runtime.delegate = self
   }
 
-  public func runtimeActivityStateDidChange(_ runtime: Runtime) {
+  public func motionRuntimeActivityStateDidChange(_ runtime: MotionRuntime) {
     switch runtime.activityState {
     case .active:
       view.backgroundColor = UIColor(red: CGFloat(0xE3) / 255.0,

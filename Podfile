@@ -1,6 +1,8 @@
 workspace 'MaterialMotionPop.xcworkspace'
 use_frameworks!
 
+pod 'MaterialMotionRuntime', :git => 'https://github.com/material-motion/runtime-objc.git', :branch => 'develop'
+
 target "Catalog" do
   pod 'CatalogByConvention'
   pod 'MaterialMotionPop/examples', :path => './'
