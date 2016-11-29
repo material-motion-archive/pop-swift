@@ -111,15 +111,12 @@ public class TossableExampleViewController: UIViewController, MotionRuntimeDeleg
   }
 
   public func motionRuntimeActivityStateDidChange(_ runtime: MotionRuntime) {
-    switch runtime.activityState {
-    case .active:
-      view.backgroundColor = UIColor(red: CGFloat(0xE3) / 255.0,
-                                     green: CGFloat(0xF2) / 255.0,
-                                     blue: CGFloat(0xFD) / 255.0,
-                                     alpha: 1)
-    case .idle:
-      view.backgroundColor = .white
-    }
+    view.backgroundColor = runtime.isActive
+      ? UIColor(red: CGFloat(0xE3) / 255.0,
+                green: CGFloat(0xF2) / 255.0,
+                blue: CGFloat(0xFD) / 255.0,
+                alpha: 1)
+      : .white
   }
 
   // MARK: Routing initializers

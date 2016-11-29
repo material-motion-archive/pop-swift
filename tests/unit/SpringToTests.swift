@@ -26,7 +26,7 @@ class SpringToTests: XCTestCase {
     let layer = CALayer()
 
     let runtime = MotionRuntime()
-    let delegate = TestableRuntimeDelegate()
+    let delegate = ExpectableRuntimeDelegate()
 
     delegate.didIdleExpectation = expectation(description: "Did idle")
     runtime.delegate = delegate
@@ -34,7 +34,7 @@ class SpringToTests: XCTestCase {
     runtime.addPlan(animation, to: layer)
 
     waitForExpectations(timeout: 1)
-    XCTAssertEqual(runtime.activityState, .idle)
+    XCTAssertFalse(runtime.isActive)
   }
 
   func testDidChangeToValue() {
@@ -43,7 +43,7 @@ class SpringToTests: XCTestCase {
     let layer = CALayer()
 
     let runtime = MotionRuntime()
-    let delegate = TestableRuntimeDelegate()
+    let delegate = ExpectableRuntimeDelegate()
     runtime.delegate = delegate
 
     runtime.addPlan(animation, to: layer)
@@ -53,7 +53,7 @@ class SpringToTests: XCTestCase {
     delegate.didIdleExpectation = expectation(description: "Did idle")
     waitForExpectations(timeout: 1)
 
-    XCTAssertEqual(runtime.activityState, .idle)
+    XCTAssertFalse(runtime.isActive)
     XCTAssertEqual(layer.opacity, animation.destination as! Float)
   }
 
@@ -75,7 +75,7 @@ class SpringToTests: XCTestCase {
     let layer = PositionTraceLayer()
 
     let runtime = MotionRuntime()
-    let delegate = TestableRuntimeDelegate()
+    let delegate = ExpectableRuntimeDelegate()
     runtime.delegate = delegate
 
     let springTo = SpringTo("position", destination: CGPoint(x: 10, y: 10))
@@ -86,7 +86,7 @@ class SpringToTests: XCTestCase {
     waitForExpectations(timeout: 1)
 
     // Calculate the maximum overshoot; a bouncy spring should overshoot the destination value
-    XCTAssertEqual(runtime.activityState, .idle)
+    XCTAssertFalse(runtime.isActive)
     var maxXPosition: CGFloat = 0
     for point in layer.values {
       maxXPosition = max(point.x, maxXPosition)
@@ -104,7 +104,7 @@ class SpringToTests: XCTestCase {
     delegate.didIdleExpectation = expectation(description: "Did idle")
     waitForExpectations(timeout: 1)
 
-    XCTAssertEqual(runtime.activityState, .idle)
+    XCTAssertFalse(runtime.isActive)
     for point in layer.values {
       XCTAssertLessThan(point.x, maxXPosition, "Expected not to overshoot springy max")
     }

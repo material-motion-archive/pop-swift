@@ -26,7 +26,7 @@ class SpringPropertyTests: XCTestCase {
     let layer = CALayer()
 
     let runtime = MotionRuntime()
-    let delegate = TestableRuntimeDelegate()
+    let delegate = ExpectableRuntimeDelegate()
     delegate.didIdleExpectation = expectation(description: "Did idle")
     runtime.delegate = delegate
 
@@ -52,7 +52,7 @@ class SpringPropertyTests: XCTestCase {
     }
 
     waitForExpectations(timeout: 10)
-    XCTAssertEqual(runtime.activityState, .idle)
+    XCTAssertFalse(runtime.isActive)
 
     for (keyPath, destination) in map {
       let finalValue = layer.value(forKeyPath: keyPath)!
